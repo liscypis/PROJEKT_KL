@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" id="4E2B69A9-BA7B-8904-4D1E-3CEF030A6764" directorySegmentName="seg_0" name="FK_OFERTA">
+<sourceConnName>java_projekt</sourceConnName>
+<sourceObjSchema>JAVA</sourceObjSchema>
+<sourceObjName>FK_OFERTA</sourceObjName>
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>2FB3958D-9662-688D-FD8C-9E4FA9344D8F</importedID>
+<containerWithKeyObject>B5AC4FE5-2C46-5A67-23AB-A878CA3C70BD</containerWithKeyObject>
+<deleteRule>NO ACTION</deleteRule>
+<localFKIndex>2BA918EC-B764-BC5F-1C15-0128C92C41E2</localFKIndex>
+<keyObject>45B72F41-3B16-1F69-5567-D4C6C3B42F31</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+</FKIndexAssociation>

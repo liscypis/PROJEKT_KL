@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.storage.oracle.v11g.StorageDesignOraclev11g>
+   <object objectType="TSpace" objectID="E8589DDD-274A-B475-D5E5-C496693A25C2" name="SYSTEM" seqName="seg_0"/>
+   <object objectType="User" objectID="D72402C1-5247-A2EC-85F5-D5FDA8212A1A" name="JAVA" seqName="seg_0"/>
+   <object objectType="User" objectID="MDSYS" name="MDSYS" seqName="seg_0"/>
+   <object objectType="User" objectID="PUBLIC" name="PUBLIC" seqName="seg_0"/>
+   <object objectType="SType" objectID="47E390DE-0671-C4B1-8428-0F45CBEE18F8" name="SDO_GEOMETRY" seqName="seg_0"/>
+   <object objectType="SType" objectID="F72C39E0-D1CA-8821-2AD7-A1E95A37D3D1" name="XMLTYPE" seqName="seg_0"/>
+   <object objectType="Table" objectID="8A590AEB-B055-1BF1-A886-9F40514E909C" name="OFERTY" seqName="seg_0"/>
+   <object objectType="Table" objectID="B5AC4FE5-2C46-5A67-23AB-A878CA3C70BD" name="ZAMOWIENIA" seqName="seg_0"/>
+   <object objectType="Table" objectID="B93E8B4A-93DB-C9BB-1D6F-C28527647737" name="UZYTKOWNICY" seqName="seg_0"/>
+   <object objectType="Segment" objectID="04471818-3DC4-5190-5DBD-C8FED3FB2B5E" name="Storage1" seqName="seg_0"/>
+   <object objectType="Segment" objectID="0005DE07-CA26-E376-DFDA-30478CCFF38D" name="Storage4" seqName="seg_0"/>
+</oracle.dbtools.crest.model.design.storage.oracle.v11g.StorageDesignOraclev11g>

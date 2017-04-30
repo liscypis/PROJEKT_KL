@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="ZAMOWIENIA" id="B5AC4FE5-2C46-5A67-23AB-A878CA3C70BD" directorySegmentName="seg_0">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>04471818-3DC4-5190-5DBD-C8FED3FB2B5E</segment>
+<tableSpace>E8589DDD-274A-B475-D5E5-C496693A25C2</tableSpace>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="UBEZPIECZENIE" id="20A38244-A22A-C24B-8035-7FEB56AEB4B4">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="ID_UZYTKOWNIKA" id="327450EB-03DB-A797-5B57-8E82DF9988D6">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="ID_ZAMOWIENIA" id="45FA47BE-098B-4E2F-7A17-8C8D74952FCB">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="ID_OFERTY" id="5AF79206-8E8A-7F26-6345-00AA9BFC113A">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="WPLATA" id="B6DD9286-AE91-38F0-A96D-C3E5BF091316">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_OFERTA" id="2BA918EC-B764-BC5F-1C15-0128C92C41E2">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="FK_UZYTKOWNIK" id="B4B393CF-A4C0-F749-6B45-1182CEC8C48B">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="ZAMOWIENIA_PK" id="C66F1306-60B1-4B52-7445-17CD55E64D04">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<tableSpace>E8589DDD-274A-B475-D5E5-C496693A25C2</tableSpace>
+<indexSegment>0005DE07-CA26-E376-DFDA-30478CCFF38D</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

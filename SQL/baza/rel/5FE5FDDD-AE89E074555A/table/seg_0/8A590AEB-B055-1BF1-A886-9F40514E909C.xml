@@ -1,0 +1,151 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" id="8A590AEB-B055-1BF1-A886-9F40514E909C" directorySegmentName="seg_0" name="OFERTY">
+<sourceConnName>java_projekt</sourceConnName>
+<sourceObjSchema>JAVA</sourceObjSchema>
+<sourceObjName>OFERTY</sourceObjName>
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>7CA9BD0E-F630-E57D-681B-0CCEFC4B68ED</importedID>
+<schemaObject>542C3FDD-6C6E-271D-CC61-B02CC75BEEF3</schemaObject>
+<pkName>OFERTY_PK</pkName>
+<fonts>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Title</foType>
+<fontStyle>1</fontStyle>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Column</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Datatype</foType>
+<colorRGB>-16744448</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>PK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>FK Element</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>UK Element</foType>
+<colorRGB>-16776961</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Not Null</foType>
+<colorRGB>-65536</colorRGB>
+</FontObject>
+<FontObject class="oracle.dbtools.crest.model.design.FontObjectWr">
+<foType>Key</foType>
+<colorRGB>-16777216</colorRGB>
+</FontObject>
+</fonts>
+<columns>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="ID_OFERTY" id="51DB615D-B8C5-FDC4-2552-CC6B3BDE26D6">
+<sourceConnName>java_projekt</sourceConnName>
+<sourceObjSchema>OFERTY</sourceObjSchema>
+<sourceObjName>ID_OFERTY</sourceObjName>
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>31C1A490-DC59-6633-7E17-9B1F57278C96</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypeSize>22</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="OPIS" id="36E7D5F9-7ED4-FD48-0A9F-BA730A777042">
+<sourceConnName>java_projekt</sourceConnName>
+<sourceObjSchema>OFERTY</sourceObjSchema>
+<sourceObjName>OPIS</sourceObjName>
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>52C8EA8D-0209-9213-6052-E3F84CFA7750</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="CENA" id="ECBD3F2F-C659-7742-D969-1D16F0E2ECB9">
+<sourceConnName>java_projekt</sourceConnName>
+<sourceObjSchema>OFERTY</sourceObjSchema>
+<sourceObjName>CENA</sourceObjName>
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>AD5F9019-0AAD-B66F-FAF1-ABC14F61D715</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DATA_POCZ" id="F28DB3B6-5427-E44D-4B8E-7D905DE80D8D">
+<sourceConnName>java_projekt</sourceConnName>
+<sourceObjSchema>OFERTY</sourceObjSchema>
+<sourceObjName>DATA_POCZ</sourceObjName>
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>30545F4D-731B-BB58-3A3F-6FF3ACDD86A8</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="DATA_KONC" id="CE05F1A3-A6C0-E89B-7EBD-9FE6675130FE">
+<sourceConnName>java_projekt</sourceConnName>
+<sourceObjSchema>OFERTY</sourceObjSchema>
+<sourceObjName>DATA_KONC</sourceObjName>
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>8F93758C-C127-271C-2389-C5C39D695A1B</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column class="oracle.dbtools.crest.model.design.relational.Column" name="ILOSC_MIEJSC" id="A81E783E-E568-FD4A-439B-53BB7437E8DE">
+<sourceConnName>java_projekt</sourceConnName>
+<sourceObjSchema>OFERTY</sourceObjSchema>
+<sourceObjName>ILOSC_MIEJSC</sourceObjName>
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>50C88CCD-2041-5C45-D3B6-377651C54ECC</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes>
+<ind_PK_UK class="oracle.dbtools.crest.model.design.relational.Index" id="45B72F41-3B16-1F69-5567-D4C6C3B42F31" name="OFERTY_PK">
+<sourceConnName>java_projekt</sourceConnName>
+<sourceObjSchema>JAVA</sourceObjSchema>
+<sourceObjName>SYS_C0012004</sourceObjName>
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:22:02 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>50A11A4E-66C2-D339-B25A-91E93DE5C21E</importedID>
+<schemaObject>542C3FDD-6C6E-271D-CC61-B02CC75BEEF3</schemaObject>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="51DB615D-B8C5-FDC4-2552-CC6B3BDE26D6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

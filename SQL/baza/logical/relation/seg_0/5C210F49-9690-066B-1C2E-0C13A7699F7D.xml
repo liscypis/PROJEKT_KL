@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="FK_OFERTA" id="5C210F49-9690-066B-1C2E-0C13A7699F7D" directorySegmentName="seg_0">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:18:05 UTC</createdTime>
+<generatorID>79D32A14-97DD-26C9-165A-6E6CE08C6A1E</generatorID>
+<ownerDesignName>baza</ownerDesignName>
+<engineerTo>
+<item key="5FE5FDDD-839F-0B6F-76E3-AE89E074555A" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>6507A756-F51D-D9CC-42A4-D6D936C70D5A</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>65A899C6-B9D0-1765-AF46-4949534EAF94</targetEntity>
+<transferable>true</transferable>
+</Relation>

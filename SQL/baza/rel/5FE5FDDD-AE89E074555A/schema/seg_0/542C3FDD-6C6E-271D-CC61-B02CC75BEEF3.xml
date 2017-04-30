@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SchemaObject class="oracle.dbtools.crest.model.design.relational.SchemaObject" name="JAVA" id="542C3FDD-6C6E-271D-CC61-B02CC75BEEF3" directorySegmentName="seg_0">
+<createdBy>Wojtek</createdBy>
+<createdTime>2017-04-30 10:16:10 UTC</createdTime>
+<ownerDesignName>baza</ownerDesignName>
+<importedID>B2915E0D-7956-3EC1-D599-A15C89C887CB</importedID>
+</SchemaObject>
