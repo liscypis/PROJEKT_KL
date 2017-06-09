@@ -1,9 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<UserOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UserOraclev10g" name="JAVA" id="D72402C1-5247-A2EC-85F5-D5FDA8212A1A" directorySegmentName="seg_0">
-<sourceConnName>java_projekt</sourceConnName>
-<sourceObjName>JAVA</sourceObjName>
-<createdBy>Wojtek</createdBy>
-<createdTime>2017-04-30 10:16:09 UTC</createdTime>
-<ownerDesignName>baza</ownerDesignName>
-<schemaObject>542C3FDD-6C6E-271D-CC61-B02CC75BEEF3</schemaObject>
-</UserOraclev10g>

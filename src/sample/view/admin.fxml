@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+    <tabs>
+        <Tab text="WYCIECZKI">
+            <content>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <Button fx:id="add" layoutX="686.0" layoutY="507.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="DODAJ" />
+                        <TextArea layoutX="14.0" layoutY="507.0" prefHeight="50.0" prefWidth="400.0" promptText="OPIS WYCIECKI" text="OPIS WYCIECKI" />
+                        <TextField layoutX="414.0" layoutY="507.0" prefHeight="50.0" prefWidth="130.0" promptText="CENA" />
+                        <TextField layoutX="544.0" layoutY="507.0" prefHeight="50.0" prefWidth="130.0" promptText="ILOŚĆ MIEJSC" />
+                        <TableView fx:id="oferty_admin" layoutY="7.0" prefHeight="488.0" prefWidth="800.0">
+                            <columns>
+                                <TableColumn fx:id="id_oferty" prefWidth="29.0" text="ID" />
+                                <TableColumn fx:id="opis" prefWidth="475.0" text="OPIS" />
+                                <TableColumn fx:id="data_pocz" minWidth="0.0" prefWidth="83.0" text="WYJAZD" />
+                                <TableColumn fx:id="data_konc" minWidth="0.0" prefWidth="99.0" text="POWRÓT" />
+                                <TableColumn fx:id="cena" minWidth="0.0" prefWidth="115.0" text="CENA" />
+                                <TableColumn fx:id="ilosc_miejsc" minWidth="0.0" prefWidth="115.0" text="ILOSC MIEJSC" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </Pane>
+            </content></Tab>
+        <Tab text="UŻYTKOWNICY">
+            <content>
+                <TableView fx:id="userTable" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                        <TableColumn fx:id="userId" prefWidth="48.0" text="ID" />
+                        <TableColumn prefWidth="103.0" text="ID_WYCIECZKI" />
+                        <TableColumn prefWidth="178.0" text="IMIE" />
+                        <TableColumn prefWidth="205.0" text="NAZWISKO" />
+                        <TableColumn prefWidth="122.0" text="UPEZPIECZENIE" />
+                        <TableColumn prefWidth="159.0" text="WPŁATA" />
+                    </columns>
+                </TableView>
+            </content></Tab>
+    </tabs>
+</TabPane>

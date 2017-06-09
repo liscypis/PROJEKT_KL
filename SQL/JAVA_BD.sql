@@ -26,3 +26,7 @@ CREATE TABLE ZAMOWIENIA (
   CONSTRAINT FK_UZYTKOWNIK FOREIGN KEY (ID_UZYTKOWNIKA) REFERENCES UZYTKOWNICY(ID_UZYTKOWNIKA),
   CONSTRAINT FK_OFERTA FOREIGN KEY (ID_OFERTY) REFERENCES OFERTY(ID_OFERTY)
 );
+
+insert into oferty values(1,'Pierwszy',432.43,'2001-11-02','2022-01-11',2);
+insert into uzytkownicy values(1,'Damian','Jakis','admin','admin');
+insert into zamowienia values(1,1,1,'tak','nie');
