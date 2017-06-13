@@ -36,10 +36,7 @@ public class Oferty {
         this.cena.set(cena);
     }
 
-    public int getId_oferty() {
-        return id_oferty.get();
-
-    }
+    public int getId_oferty() { return id_oferty.get();}
 
     public IntegerProperty id_ofertyProperty() {
         return id_oferty;

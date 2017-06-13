@@ -56,7 +56,7 @@ public class Main extends Application {
     @FXML
     public void loadUserInterface(ActionEvent event) throws IOException {
         ((Node)(event.getSource())).getScene().getWindow().hide();  // zamyka okno logowania
-        Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/user.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Biuro podróży nigdy więcej");
         stage.setScene(new Scene(root));

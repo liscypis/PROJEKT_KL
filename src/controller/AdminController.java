@@ -1,12 +1,13 @@
 package controller;
 
 import dao.OfertyAdmin;
+import dao.UzytkownicyAdmin;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import tables.Oferty;
+import tables.Uzytkownicy;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -30,6 +31,22 @@ public class AdminController {
     @FXML
     private TableColumn<Oferty, Integer> ilosc_miejsc;
 
+    @FXML
+    private TableView uzytkownicy_admin;
+    @FXML
+    private TableColumn<Uzytkownicy, Integer> ID_WYCIECZKI;
+    @FXML
+    private TableColumn<Uzytkownicy, Integer> ID_UZYTKOWNIKA;
+    @FXML
+    private TableColumn<Uzytkownicy, String > NAZWISKO;
+    @FXML
+    private TableColumn<Uzytkownicy, String> IMIE;
+    @FXML
+    private TableColumn<Uzytkownicy, String > UBEZPIECZENIE;
+    @FXML
+    private TableColumn<Uzytkownicy, String > WPLATA;
+
+
     //inicjalizacja
     @FXML
     private void initialize () throws SQLException, ClassNotFoundException {
@@ -40,6 +57,13 @@ public class AdminController {
         data_konc.setCellValueFactory(cellData -> cellData.getValue().data_koncProperty());
         ilosc_miejsc.setCellValueFactory(cellData -> cellData.getValue().ilosc_miejscProperty().asObject());
         searchOferty();
+        ID_WYCIECZKI.setCellValueFactory(cellData -> cellData.getValue().id_wycieczkiProperty().asObject());
+        ID_UZYTKOWNIKA.setCellValueFactory(cellData -> cellData.getValue().id_uzytkownikaProperty().asObject());
+        NAZWISKO.setCellValueFactory(cellData -> cellData.getValue().nazwiskoProperty());
+        IMIE.setCellValueFactory(cellData -> cellData.getValue().imieProperty());
+        UBEZPIECZENIE.setCellValueFactory(cellData -> cellData.getValue().ubezpieczenieProperty());
+        WPLATA.setCellValueFactory(cellData -> cellData.getValue().wplataProperty());
+        searchUzytkownicy();
     }
     //wszytkie oferty
     @FXML
@@ -55,10 +79,30 @@ public class AdminController {
         }
     }
 
-    //Populate TableView
+    //Populate TableView Oferty_admin
     @FXML
     private void populateOferty (ObservableList<Oferty> oferty)  {
         //Set items to the employeeTable
         oferty_admin.setItems(oferty);
+    }
+    //wszyscy uzytkownicy
+    @FXML
+    private void searchUzytkownicy() throws SQLException, ClassNotFoundException {
+        try {
+            //Get all information
+            ObservableList<Uzytkownicy> uz = UzytkownicyAdmin.searchUzytkownicy();
+            //Populate TableView
+            populateUzytkownicy(uz);
+        } catch (SQLException e){
+            System.out.println("Error occurred while getting information from DB.\n" + e);
+            throw e;
+        }
+    }
+
+    //Populate TableView
+    @FXML
+    private void populateUzytkownicy (ObservableList<Uzytkownicy> uz)  {
+        //Set items to the employeeTable
+        uzytkownicy_admin.setItems(uz);
     }
 }

@@ -34,14 +34,14 @@
             </content></Tab>
         <Tab text="UŻYTKOWNICY">
             <content>
-                <TableView fx:id="userTable" prefHeight="200.0" prefWidth="200.0">
+                <TableView fx:id="uzytkownicy_admin" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                        <TableColumn fx:id="userId" prefWidth="48.0" text="ID" />
-                        <TableColumn prefWidth="103.0" text="ID_WYCIECZKI" />
-                        <TableColumn prefWidth="178.0" text="IMIE" />
-                        <TableColumn prefWidth="205.0" text="NAZWISKO" />
-                        <TableColumn prefWidth="122.0" text="UPEZPIECZENIE" />
-                        <TableColumn prefWidth="159.0" text="WPŁATA" />
+                        <TableColumn fx:id="ID_UZYTKOWNIKA" prefWidth="48.0" text="ID" />
+                        <TableColumn fx:id="ID_WYCIECZKI" prefWidth="103.0" text="ID_WYCIECZKI" />
+                        <TableColumn fx:id="IMIE" prefWidth="178.0" text="IMIE" />
+                        <TableColumn fx:id="NAZWISKO" prefWidth="205.0" text="NAZWISKO" />
+                        <TableColumn fx:id="UBEZPIECZENIE" prefWidth="122.0" text="UPEZPIECZENIE" />
+                        <TableColumn fx:id="WPLATA" prefWidth="159.0" text="WPŁATA" />
                     </columns>
                 </TableView>
             </content></Tab>
