@@ -94,4 +94,5 @@ insert into zamowienia values(17,17,17,'Tak','Nie');
 insert into zamowienia values(18,20,19,'Tak','Nie');
 insert into zamowienia values(19,19,18,'Tak','Nie');
 insert into zamowienia values(20,18,20,'Tak','Nie');
+insert into zamowienia values(21,18,20,'Tak','Nie');
 

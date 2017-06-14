@@ -15,21 +15,21 @@ import java.util.Date;
  */
 public class OfertyAdmin {
 
- /*   //SELECT 1 Oferty Admin
-    public static Oferty searchOferta (String id_ofe) throws SQLException, ClassNotFoundException {
+    //SELECT 1 Oferty Admin
+    public static Oferty searchOferta (int id_ofe) throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT * FROM oferty WHERE id_oferty="+id_ofe;
+        String selectStmt = "SELECT opis, cena, data_pocz, data_konc FROM oferty WHERE id_oferty= "+id_ofe+"";
 
         //Execute SELECT statement
         try {
             //Get ResultSet from executeSelect method
-            ResultSet resultOferty = ConnectToDatabase.executeSelect(selectStmt);
+            ResultSet resultOferta = ConnectToDatabase.executeSelect(selectStmt);
 
             //Send ResultSet to the getEmployeeFromResultSet method and get employee object
-            Oferty oferty = getOfertyFromResultSet(resultOferty);
+            Oferty oferta = getOfertaFromResultSet(resultOferta);
 
             //Return oferty object
-            return oferty;
+            return oferta;
         } catch (SQLException e) {
             System.out.println("While searching an employee with " + id_ofe + " id, an error occurred: " + e);
             //Return exception
@@ -37,20 +37,18 @@ public class OfertyAdmin {
         }
     }
 
-    private static Oferty getOfertyFromResultSet(ResultSet rs) throws SQLException
+    private static Oferty getOfertaFromResultSet(ResultSet rs) throws SQLException
     {
         Oferty ofe = null;
         if (rs.next()) {
             ofe = new Oferty();
-            ofe.setId_oferty(rs.getInt("ID_OFERTY"));
             ofe.setOpis(rs.getString("OPIS"));
             ofe.setCena(rs.getDouble("CENA"));
             ofe.setData_pocz(rs.getDate("DATA_POCZ"));
             ofe.setData_konc(rs.getDate("DATA_KONC"));
-            ofe.setIlosc_miejsc(rs.getInt("ILOSC_MIEJSC"));
         }
         return ofe;
-    }*/
+    }
 
     //SELECT * Oferty Admin
     public static ObservableList<Oferty> searchOferty () throws SQLException, ClassNotFoundException {
@@ -88,16 +86,29 @@ public class OfertyAdmin {
             ofe.setData_konc(rs.getDate("DATA_KONC"));
             ofe.setIlosc_miejsc(rs.getInt("ILOSC_MIEJSC"));
             ofertyList.add(ofe);
-            System.out.println(ofe.getId_oferty());
         }
         return ofertyList;
     }
     //*************************************
     //INSERT oferta
     //*************************************
-    public static void insertEmp (String opis, double cena, Date data_pocz, Date data_konc, int ilosc_miejsc) throws SQLException, ClassNotFoundException {
+    public static void insertoferta (String opis, double cena, Date data_pocz, Date data_konc, int ilosc_miejsc) throws SQLException, ClassNotFoundException {
         //Declare a insert statement
         String updateStmt = "insert into oferty values(oferty_seq.nextval,'"+opis+"',"+cena+",'"+data_pocz+"','"+data_konc+"',"+ilosc_miejsc+")";
+        //Execute insert
+        try {
+            ConnectToDatabase.executeUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while insert Operation: " + e);
+            throw e;
+        }
+    }
+    //*************************************
+    //UPDATE oferta
+    //*************************************
+    public static void updateOferta (int id_ofe, String opis, double cena, Date data_pocz, Date data_konc) throws SQLException, ClassNotFoundException {
+        //Declare a insert statement
+        String updateStmt = "UPDATE oferty SET OPIS='"+opis+"', CENA="+cena+", DATA_POCZ='"+data_pocz+"',DATA_KONC='"+data_konc+"'WHERE id_oferty= "+id_ofe+"";
         //Execute insert
         try {
             ConnectToDatabase.executeUpdate(updateStmt);
@@ -109,7 +120,7 @@ public class OfertyAdmin {
     // zamiana stringa na date
     public static Date toSqlDate(String strDate)
     {
-        DateFormat dateFrm = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date myDate;
         java.sql.Date sqlDate;
 

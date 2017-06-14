@@ -2,16 +2,16 @@ package controller;
 
 import dao.OfertyAdmin;
 import dao.UzytkownicyAdmin;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import tables.Oferty;
 import tables.Uzytkownicy;
-
-import java.awt.*;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -22,6 +22,9 @@ import static dao.OfertyAdmin.toSqlDate;
  * Created by Wojtek on 09.06.2017.
  */
 public class AdminController {
+
+
+    // populate oferty
     @FXML
     private TableView oferty_admin;
     @FXML
@@ -37,8 +40,11 @@ public class AdminController {
     @FXML
     private TableColumn<Oferty, Integer> ilosc_miejsc;
 
+    // populate uzytkownicy
     @FXML
     private TableView uzytkownicy_admin;
+    @FXML
+    private TableColumn<Uzytkownicy, Integer> ID_ZAMOWIENIA;
     @FXML
     private TableColumn<Uzytkownicy, Integer> ID_WYCIECZKI;
     @FXML
@@ -52,6 +58,7 @@ public class AdminController {
     @FXML
     private TableColumn<Uzytkownicy, String > WPLATA;
 
+    // dodawanie danych
     @FXML
     private TextField opisField;
     @FXML
@@ -63,7 +70,24 @@ public class AdminController {
     @FXML
     private TextField iloscField;
 
+    // edycja danych
+    @FXML
+    private TextField idOfertyEdit;
+    @FXML
+    private TextField opisFieldEdit;
+    @FXML
+    private TextField dataPoczFieldEdit;
+    @FXML
+    private TextField dataKoncFieldEdit;
+    @FXML
+    private TextField cenaFieldEdit;
 
+    @FXML
+    private ChoiceBox wplata;
+    @FXML
+    private TextField idZamowieniaEdit;
+
+    ObservableList<String> wplatal = FXCollections.observableArrayList("Tak","Nie");
     //inicjalizacja
     @FXML
     private void initialize () throws SQLException, ClassNotFoundException {
@@ -74,6 +98,7 @@ public class AdminController {
         data_konc.setCellValueFactory(cellData -> cellData.getValue().data_koncProperty());
         ilosc_miejsc.setCellValueFactory(cellData -> cellData.getValue().ilosc_miejscProperty().asObject());
         searchOferty();
+        ID_ZAMOWIENIA.setCellValueFactory(cellData -> cellData.getValue().id_zamowieniaProperty().asObject());
         ID_WYCIECZKI.setCellValueFactory(cellData -> cellData.getValue().id_wycieczkiProperty().asObject());
         ID_UZYTKOWNIKA.setCellValueFactory(cellData -> cellData.getValue().id_uzytkownikaProperty().asObject());
         NAZWISKO.setCellValueFactory(cellData -> cellData.getValue().nazwiskoProperty());
@@ -81,6 +106,8 @@ public class AdminController {
         UBEZPIECZENIE.setCellValueFactory(cellData -> cellData.getValue().ubezpieczenieProperty());
         WPLATA.setCellValueFactory(cellData -> cellData.getValue().wplataProperty());
         searchUzytkownicy();
+        wplata.setValue("Tak");
+        wplata.setItems(wplatal);
     }
     //wszytkie oferty
     @FXML
@@ -122,15 +149,61 @@ public class AdminController {
         //Set items to the employeeTable
         uzytkownicy_admin.setItems(uz);
     }
-
+    //Szukanie oferty
+    @FXML
+    private void searchOferta (ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
+        try {
+            //Get id oferty
+            Oferty ofe = OfertyAdmin.searchOferta(Integer.valueOf(idOfertyEdit.getText()));
+            //Populate information
+            populateOferta(ofe);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error occurred while getting employee information from DB.\n" + e);
+            throw e;
+        }
+    }
+    //Wypisywanie Oferty w textField
+    @FXML
+    private void populateOferta (Oferty ofe) throws ClassNotFoundException {
+        opisFieldEdit.setText(ofe.getOpis());
+        dataPoczFieldEdit.setText(String.valueOf(ofe.getData_pocz()));
+        dataKoncFieldEdit.setText(String.valueOf(ofe.getData_konc()));
+        cenaFieldEdit.setText(String.valueOf(ofe.getCena()));
+    }
+    // dodawanie oferty
     @FXML
     private void insertOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
-            OfertyAdmin.insertEmp(opisField.getText(),Double.valueOf(cenaField.getText()),toSqlDate(dataPoczField.getText()),toSqlDate(dataKoncField.getText()),Integer.valueOf(iloscField.getText()));
+            OfertyAdmin.insertoferta(opisField.getText(),Double.valueOf(cenaField.getText()),toSqlDate(dataPoczField.getText()),toSqlDate(dataKoncField.getText()),Integer.valueOf(iloscField.getText()));
             System.out.println("Oferta dodana! \n");
+            searchOferty();
         } catch (SQLException e) {
             System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
             throw e;
         }
     }
+    @FXML
+    private void updateOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        try {
+            OfertyAdmin.updateOferta(Integer.valueOf(idOfertyEdit.getText()),opisFieldEdit.getText(),Double.valueOf(cenaFieldEdit.getText()),toSqlDate(dataPoczFieldEdit.getText()),toSqlDate(dataKoncFieldEdit.getText()));
+            System.out.println("Oferta dodana! \n");
+            searchOferty();
+        } catch (SQLException e) {
+            System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
+            throw e;
+        }
+    }
+    @FXML
+    private void updateWpl (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        try {
+            UzytkownicyAdmin.updateWplata(Integer.valueOf(idZamowieniaEdit.getText()),String.valueOf(wplata.getValue()));
+            System.out.println("ZMIENONO POLE WPLATA! \n");
+            searchUzytkownicy();
+        } catch (SQLException e) {
+            System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
+            throw e;
+        }
+    }
+
 }

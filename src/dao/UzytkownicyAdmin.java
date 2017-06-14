@@ -16,7 +16,7 @@ public class UzytkownicyAdmin {
     //SELECT * Uzytkownicy Admin
     public static ObservableList<Uzytkownicy> searchUzytkownicy () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT oferty.id_oferty, uzytkownicy.id_uzytkownika, imie, nazwisko, wplata, ubezpieczenie FROM oferty, uzytkownicy, zamowienia where zamowienia.id_uzytkownika = uzytkownicy.id_uzytkownika and zamowienia.id_oferty = oferty.id_oferty";
+        String selectStmt = "SELECT zamowienia.id_zamowienia, oferty.id_oferty, uzytkownicy.id_uzytkownika, imie, nazwisko, wplata, ubezpieczenie FROM oferty, uzytkownicy, zamowienia where zamowienia.id_uzytkownika = uzytkownicy.id_uzytkownika and zamowienia.id_oferty = oferty.id_oferty";
         //Execute SELECT statement
         try {
             //Get ResultSet from executeSelect method
@@ -41,6 +41,7 @@ public class UzytkownicyAdmin {
 
         while (rs.next()) {
             Uzytkownicy uz = new Uzytkownicy();
+            uz.setId_zamowienia(rs.getInt("ID_ZAMOWIENIA"));
             uz.setId_wycieczki(rs.getInt("ID_OFERTY"));
             uz.setId_uzytkownika(rs.getInt("ID_UZYTKOWNIKA"));
             uz.setImie(rs.getString("IMIE"));
@@ -50,5 +51,19 @@ public class UzytkownicyAdmin {
             uzytkownicyList.add(uz);
         }
         return uzytkownicyList;
+    }
+    //*************************************
+    //UPDATE wpłata
+    //*************************************
+    public static void updateWplata (int id_zam, String wplata) throws SQLException, ClassNotFoundException {
+        //Declare a insert statement
+        String updateStmt = "UPDATE ZAMOWIENIA SET WPLATA='"+wplata+"' WHERE ID_ZAMOWIENIA= "+id_zam+"";
+        //Execute insert
+        try {
+            ConnectToDatabase.executeUpdate(updateStmt);
+        } catch (SQLException e) {
+            System.out.print("Error occurred while insert Operation: " + e);
+            throw e;
+        }
     }
 }

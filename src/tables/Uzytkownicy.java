@@ -9,6 +9,7 @@ import javafx.beans.property.StringProperty;
  * Created by Wojtek on 13.06.2017.
  */
 public class Uzytkownicy {
+    private IntegerProperty id_zamowienia;
     private IntegerProperty id_uzytkownika;
     private StringProperty imie;
     private StringProperty nazwisko;
@@ -17,12 +18,25 @@ public class Uzytkownicy {
     private StringProperty ubezpieczenie;
 
     public Uzytkownicy() {
+        this.id_zamowienia = new SimpleIntegerProperty();
         this.id_uzytkownika = new SimpleIntegerProperty();
         this.imie = new SimpleStringProperty();
         this.nazwisko = new SimpleStringProperty();
         this.id_wycieczki = new SimpleIntegerProperty();
         this.wplata = new SimpleStringProperty();
         this.ubezpieczenie = new SimpleStringProperty();
+    }
+
+    public int getId_zamowienia() {
+        return id_zamowienia.get();
+    }
+
+    public IntegerProperty id_zamowieniaProperty() {
+        return id_zamowienia;
+    }
+
+    public void setId_zamowienia(int id_zamowienia) {
+        this.id_zamowienia.set(id_zamowienia);
     }
 
     public int getId_wycieczki() {
