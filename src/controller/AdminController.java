@@ -3,14 +3,20 @@ package controller;
 import dao.OfertyAdmin;
 import dao.UzytkownicyAdmin;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import tables.Oferty;
 import tables.Uzytkownicy;
 
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.Date;
+
+import static dao.OfertyAdmin.toSqlDate;
+
 
 /**
  * Created by Wojtek on 09.06.2017.
@@ -45,6 +51,17 @@ public class AdminController {
     private TableColumn<Uzytkownicy, String > UBEZPIECZENIE;
     @FXML
     private TableColumn<Uzytkownicy, String > WPLATA;
+
+    @FXML
+    private TextField opisField;
+    @FXML
+    private TextField cenaField;
+    @FXML
+    private TextField dataPoczField;
+    @FXML
+    private TextField dataKoncField;
+    @FXML
+    private TextField iloscField;
 
 
     //inicjalizacja
@@ -83,7 +100,7 @@ public class AdminController {
     @FXML
     private void populateOferty (ObservableList<Oferty> oferty)  {
         //Set items to the employeeTable
-        oferty_admin.setItems(oferty);
+        oferty_admin.itemsProperty().setValue(oferty);
     }
     //wszyscy uzytkownicy
     @FXML
@@ -101,8 +118,19 @@ public class AdminController {
 
     //Populate TableView
     @FXML
-    private void populateUzytkownicy (ObservableList<Uzytkownicy> uz)  {
+    private void populateUzytkownicy (ObservableList<Uzytkownicy> uz) throws ClassNotFoundException {
         //Set items to the employeeTable
         uzytkownicy_admin.setItems(uz);
+    }
+
+    @FXML
+    private void insertOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        try {
+            OfertyAdmin.insertEmp(opisField.getText(),Double.valueOf(cenaField.getText()),toSqlDate(dataPoczField.getText()),toSqlDate(dataKoncField.getText()),Integer.valueOf(iloscField.getText()));
+            System.out.println("Oferta dodana! \n");
+        } catch (SQLException e) {
+            System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
+            throw e;
+        }
     }
 }

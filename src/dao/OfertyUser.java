@@ -40,7 +40,7 @@ public class OfertyUser {
     {
         ObservableList<Oferty> ofertyList = FXCollections.observableArrayList();
 
-        if (rs.next()) {
+        while (rs.next()) {
             Oferty ofe = new Oferty();
             ofe.setOpis(rs.getString("OPIS"));
             ofe.setCena(rs.getDouble("CENA"));

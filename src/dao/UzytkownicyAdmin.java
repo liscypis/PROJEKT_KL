@@ -39,7 +39,7 @@ public class UzytkownicyAdmin {
     {
         ObservableList<Uzytkownicy> uzytkownicyList = FXCollections.observableArrayList();
 
-        if (rs.next()) {
+        while (rs.next()) {
             Uzytkownicy uz = new Uzytkownicy();
             uz.setId_wycieczki(rs.getInt("ID_OFERTY"));
             uz.setId_uzytkownika(rs.getInt("ID_UZYTKOWNIKA"));

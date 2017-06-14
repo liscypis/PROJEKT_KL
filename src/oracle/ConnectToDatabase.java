@@ -87,7 +87,7 @@ public class ConnectToDatabase {
     }
 
     // Update/delete/insert
-    public static void executeOperation(String sqlStmt) throws SQLException, ClassNotFoundException {
+    public static void executeUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
         //Declare statement as null
         Statement stmt = null;
         try {

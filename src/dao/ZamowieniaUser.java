@@ -38,7 +38,7 @@ public class ZamowieniaUser {
     {
         ObservableList<Zamowienia> ofertyList = FXCollections.observableArrayList();
 
-        if (rs.next()) {
+        while (rs.next()) {
             Zamowienia zamowienia = new Zamowienia();
             zamowienia.setOpis_zam(rs.getString("OPIS"));
             zamowienia.setUbezpieczenie(rs.getString("UBEZPIECZENIE"));
