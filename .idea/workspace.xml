@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Dodane wyświetlanie">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PROJEKT_KL/controller/AdminController.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SQL/JAVA_BD.sql" afterPath="$PROJECT_DIR$/SQL/JAVA_BD.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PROJEKT_KL/controller/AdminController.class" afterPath="$PROJECT_DIR$/out/production/PROJEKT_KL/controller/AdminController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PROJEKT_KL/sample/view/admin.fxml" afterPath="$PROJECT_DIR$/out/production/PROJEKT_KL/sample/view/admin.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/AdminController.java" afterPath="$PROJECT_DIR$/src/controller/AdminController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/UserController.java" afterPath="$PROJECT_DIR$/src/controller/UserController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dao/OfertyAdmin.java" afterPath="$PROJECT_DIR$/src/dao/OfertyAdmin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dao/OfertyUser.java" afterPath="$PROJECT_DIR$/src/dao/OfertyUser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dao/UzytkownicyAdmin.java" afterPath="$PROJECT_DIR$/src/dao/UzytkownicyAdmin.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sample/view/admin.fxml" afterPath="$PROJECT_DIR$/src/sample/view/admin.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tables/Uzytkownicy.java" afterPath="$PROJECT_DIR$/src/tables/Uzytkownicy.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,23 +72,10 @@
       <file leaf-file-name="UzytkownicyAdmin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dao/UzytkownicyAdmin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="59" column="70" lean-forward="false" selection-start-line="59" selection-start-column="70" selection-end-line="59" selection-end-column="70" />
+            <state relative-caret-position="-218">
+              <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Zamowienia.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tables/Zamowienia.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="35" column="40" lean-forward="false" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="40" />
-              <folding>
-                <element signature="e#844#845#0" expanded="true" />
-                <element signature="e#873#874#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,26 +84,21 @@
       <file leaf-file-name="Uzytkownicy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tables/Uzytkownicy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+            <state relative-caret-position="388">
+              <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1051#1052#0" expanded="true" />
                 <element signature="e#1105#1106#0" expanded="true" />
                 <element signature="e#1141#1142#0" expanded="true" />
-                <element signature="e#1196#1197#0" expanded="true" />
-                <element signature="e#1249#1250#0" expanded="true" />
-                <element signature="e#2419#2420#0" expanded="true" />
-                <element signature="e#2446#2447#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ZamowieniaUser.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ZamowieniaUser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/dao/ZamowieniaUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="601">
               <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -127,8 +110,8 @@
       <file leaf-file-name="OfertyAdmin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dao/OfertyAdmin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-42">
-              <caret line="97" column="24" lean-forward="true" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
+            <state relative-caret-position="183">
+              <caret line="54" column="40" lean-forward="false" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -136,11 +119,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1239">
+              <caret line="67" column="20" lean-forward="false" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
-              <caret line="201" column="32" lean-forward="false" selection-start-line="201" selection-start-column="32" selection-end-line="201" selection-end-column="32" />
+            <state relative-caret-position="318">
+              <caret line="112" column="43" lean-forward="true" selection-start-line="110" selection-start-column="4" selection-end-line="112" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -151,9 +146,21 @@
       <file leaf-file-name="ConnectToDatabase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/oracle/ConnectToDatabase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
+            <state relative-caret-position="1827">
               <caret line="89" column="36" lean-forward="false" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OfertyUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dao/OfertyUser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="31">
+              <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -164,22 +171,12 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-84">
-              <caret line="19" column="65" lean-forward="false" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
+            <state relative-caret-position="315">
+              <caret line="24" column="103" lean-forward="false" selection-start-line="24" selection-start-column="103" selection-end-line="24" selection-end-column="103" />
               <folding>
-                <marker date="1497475893550" expanded="true" signature="5646:5674" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OfertyUser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/OfertyUser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1497528269587" expanded="true" signature="4218:4954" ph="..." />
+                <marker date="1497528269587" expanded="true" signature="4248:4925" ph="..." />
+                <marker date="1497528269587" expanded="true" signature="5651:5679" ph="..." />
               </folding>
             </state>
           </provider>
@@ -243,16 +240,16 @@
         <option value="$PROJECT_DIR$/src/tables/Zamowienia.java" />
         <option value="$PROJECT_DIR$/src/tables/Oferty.java" />
         <option value="$PROJECT_DIR$/src/sample/view/user.fxml" />
-        <option value="$PROJECT_DIR$/src/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/oracle/ConnectToDatabase.java" />
-        <option value="$PROJECT_DIR$/src/dao/OfertyUser.java" />
         <option value="$PROJECT_DIR$/src/dao/ZamowieniaUser.java" />
-        <option value="$PROJECT_DIR$/src/sample/view/admin.fxml" />
         <option value="$PROJECT_DIR$/SQL/JAVA_BD.sql" />
         <option value="$PROJECT_DIR$/src/tables/Uzytkownicy.java" />
+        <option value="$PROJECT_DIR$/src/sample/view/admin.fxml" />
         <option value="$PROJECT_DIR$/src/dao/OfertyAdmin.java" />
+        <option value="$PROJECT_DIR$/src/dao/OfertyUser.java" />
         <option value="$PROJECT_DIR$/src/dao/UzytkownicyAdmin.java" />
         <option value="$PROJECT_DIR$/src/controller/AdminController.java" />
+        <option value="$PROJECT_DIR$/src/controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -291,6 +288,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -445,9 +445,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -824,7 +821,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32799146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24598931" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20654762" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20654762" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="MaxCompute Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -912,7 +909,9 @@
         <state relative-caret-position="782">
           <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
-            <marker date="1497475893550" expanded="true" signature="5646:5674" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="4218:4954" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="4248:4925" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="5651:5679" ph="..." />
           </folding>
         </state>
       </provider>
@@ -946,7 +945,9 @@
         <state relative-caret-position="782">
           <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
-            <marker date="1497475893550" expanded="true" signature="5646:5674" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="4218:4954" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="4248:4925" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="5651:5679" ph="..." />
           </folding>
         </state>
       </provider>
@@ -980,7 +981,9 @@
         <state relative-caret-position="782">
           <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
-            <marker date="1497475893550" expanded="true" signature="5646:5674" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="4218:4954" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="4248:4925" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="5651:5679" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1099,34 +1102,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="37" column="58" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/oracle/ConnectToDatabase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="89" column="36" lean-forward="false" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/OfertyUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tables/Zamowienia.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
@@ -1134,36 +1109,6 @@
           <folding>
             <element signature="e#844#845#0" expanded="true" />
             <element signature="e#873#874#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tables/Uzytkownicy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="29" column="35" lean-forward="false" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1051#1052#0" expanded="true" />
-            <element signature="e#1105#1106#0" expanded="true" />
-            <element signature="e#1141#1142#0" expanded="true" />
-            <element signature="e#1196#1197#0" expanded="true" />
-            <element signature="e#1249#1250#0" expanded="true" />
-            <element signature="e#2419#2420#0" expanded="true" />
-            <element signature="e#2446#2447#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/view/admin.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
-          <caret line="19" column="65" lean-forward="false" selection-start-line="19" selection-start-column="65" selection-end-line="19" selection-end-column="65" />
-          <folding>
-            <marker date="1497475893550" expanded="true" signature="5646:5674" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1176,30 +1121,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/ZamowieniaUser.java">
+    <entry file="file://$PROJECT_DIR$/src/oracle/ConnectToDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1827">
+          <caret line="89" column="36" lean-forward="false" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/view/admin.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <caret line="24" column="103" lean-forward="false" selection-start-line="24" selection-start-column="103" selection-end-line="24" selection-end-column="103" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1497528269587" expanded="true" signature="4218:4954" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="4248:4925" ph="..." />
+            <marker date="1497528269587" expanded="true" signature="5651:5679" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/OfertyAdmin.java">
+    <entry file="file://$PROJECT_DIR$/src/tables/Uzytkownicy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="97" column="24" lean-forward="true" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
+        <state relative-caret-position="388">
+          <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1105#1106#0" expanded="true" />
+            <element signature="e#1141#1142#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/UzytkownicyAdmin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="59" column="70" lean-forward="false" selection-start-line="59" selection-start-column="70" selection-end-line="59" selection-end-column="70" />
+        <state relative-caret-position="-218">
+          <caret line="39" column="36" lean-forward="false" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1208,8 +1168,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="201" column="32" lean-forward="false" selection-start-line="201" selection-start-column="32" selection-end-line="201" selection-end-column="32" />
+        <state relative-caret-position="318">
+          <caret line="112" column="43" lean-forward="true" selection-start-line="110" selection-start-column="4" selection-end-line="112" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1239">
+          <caret line="67" column="20" lean-forward="false" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/OfertyAdmin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="54" column="40" lean-forward="false" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/OfertyUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="16" column="25" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/ZamowieniaUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

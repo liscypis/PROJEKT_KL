@@ -48,7 +48,9 @@ public class UserController {
         ubezpieczenie.setCellValueFactory(cellData -> cellData.getValue().ubezpieczenieProperty());
         searchZamowienia();
     }
-    //wszytkie oferty
+    //*************************************
+    // Szuka i Dodaje oferty do tabview
+    //*************************************
     @FXML
     private void searchOfertyUs() throws SQLException, ClassNotFoundException {
         try {
@@ -62,14 +64,18 @@ public class UserController {
         }
     }
 
-    //Populate TableView Oferty_admin
+    //*************************************
+    // Dodaje oferty do tabview
+    //*************************************
     @FXML
     private void populateOfertyUs (ObservableList<Oferty> oferty)  {
         //Set items to the oferty_user
         oferty_user.setItems(oferty);
     }
 
-    //wszytkie zam
+    //*************************************
+    // Szuka i Dodaje zamowienia do tabview
+    //*************************************
     @FXML
     private void searchZamowienia() throws SQLException, ClassNotFoundException {
         try {
@@ -83,7 +89,9 @@ public class UserController {
         }
     }
 
-    //Populate TableView zam_user
+    //*************************************
+    // Dodaje zamowienia do tabview
+    //*************************************
     @FXML
     private void populateZamowienia (ObservableList<Zamowienia> zam)  {
         //Set items to the oferty_user

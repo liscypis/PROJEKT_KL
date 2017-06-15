@@ -13,7 +13,9 @@ import java.sql.SQLException;
  */
 public class OfertyUser {
 
-    //SELECT * Oferty user
+    //*************************************
+    //SELECT  FROM oferty
+    //*************************************
     public static ObservableList<Oferty> searchOfertyUs () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT opis,cena,data_pocz,data_konc FROM oferty";
@@ -35,7 +37,9 @@ public class OfertyUser {
         }
     }
 
-    // dodawanie ofert do listy
+    //*************************************
+    //Dodawanie elementow do listy
+    //*************************************
     public static ObservableList<Oferty> getOfertyListUs(ResultSet rs) throws SQLException
     {
         ObservableList<Oferty> ofertyList = FXCollections.observableArrayList();

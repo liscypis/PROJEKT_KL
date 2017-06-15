@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class OfertyAdmin {
 
-    //SELECT 1 Oferty Admin
+   /* //SELECT 1 Oferty Admin
     public static Oferty searchOferta (int id_ofe) throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT opis, cena, data_pocz, data_konc FROM oferty WHERE id_oferty= "+id_ofe+"";
@@ -49,8 +49,10 @@ public class OfertyAdmin {
         }
         return ofe;
     }
-
-    //SELECT * Oferty Admin
+*/
+   //*************************************
+   //SELECT * FROM oferty
+   //*************************************
     public static ObservableList<Oferty> searchOferty () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT * FROM oferty";
@@ -72,7 +74,9 @@ public class OfertyAdmin {
         }
     }
 
-    // dodawanie ofert do listy
+    //*************************************
+    // DOdawanie ofert do listy
+    //*************************************
     public static ObservableList<Oferty> getOfertyList(ResultSet rs) throws SQLException
     {
         ObservableList<Oferty> ofertyList = FXCollections.observableArrayList();

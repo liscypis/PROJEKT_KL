@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import tables.Oferty;
 import tables.Uzytkownicy;
 import java.sql.SQLException;
@@ -26,7 +23,7 @@ public class AdminController {
 
     // populate oferty
     @FXML
-    private TableView oferty_admin;
+    private TableView<Oferty> oferty_admin;
     @FXML
     private TableColumn<Oferty, Integer> id_oferty;
     @FXML
@@ -42,7 +39,7 @@ public class AdminController {
 
     // populate uzytkownicy
     @FXML
-    private TableView uzytkownicy_admin;
+    private TableView<Uzytkownicy> uzytkownicy_admin;
     @FXML
     private TableColumn<Uzytkownicy, Integer> ID_ZAMOWIENIA;
     @FXML
@@ -86,8 +83,9 @@ public class AdminController {
     private ChoiceBox wplata;
     @FXML
     private TextField idZamowieniaEdit;
-
+    @FXML
     ObservableList<String> wplatal = FXCollections.observableArrayList("Tak","Nie");
+
     //inicjalizacja
     @FXML
     private void initialize () throws SQLException, ClassNotFoundException {
@@ -108,8 +106,11 @@ public class AdminController {
         searchUzytkownicy();
         wplata.setValue("Tak");
         wplata.setItems(wplatal);
+
     }
-    //wszytkie oferty
+    //*************************************
+    //Wyszukuje wszytkie oferty i dodaje je do tabview
+    //*************************************
     @FXML
     private void searchOferty() throws SQLException, ClassNotFoundException {
         try {
@@ -121,15 +122,20 @@ public class AdminController {
             System.out.println("Error occurred while getting information from DB.\n" + e);
             throw e;
         }
+
     }
 
-    //Populate TableView Oferty_admin
+    //*************************************
+    //Dodaje elementy do oferty_admin
+    //*************************************
     @FXML
     private void populateOferty (ObservableList<Oferty> oferty)  {
         //Set items to the employeeTable
         oferty_admin.itemsProperty().setValue(oferty);
     }
-    //wszyscy uzytkownicy
+    //*************************************
+    //Wyszukuje wszytkich uz i dodaje do tabview
+    //*************************************
     @FXML
     private void searchUzytkownicy() throws SQLException, ClassNotFoundException {
         try {
@@ -143,35 +149,17 @@ public class AdminController {
         }
     }
 
-    //Populate TableView
+    //*************************************
+    //dodaje elementy do uzytkoicy_admin
+    //*************************************
     @FXML
     private void populateUzytkownicy (ObservableList<Uzytkownicy> uz) throws ClassNotFoundException {
         //Set items to the employeeTable
         uzytkownicy_admin.setItems(uz);
     }
-    //Szukanie oferty
-    @FXML
-    private void searchOferta (ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
-        try {
-            //Get id oferty
-            Oferty ofe = OfertyAdmin.searchOferta(Integer.valueOf(idOfertyEdit.getText()));
-            //Populate information
-            populateOferta(ofe);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error occurred while getting employee information from DB.\n" + e);
-            throw e;
-        }
-    }
-    //Wypisywanie Oferty w textField
-    @FXML
-    private void populateOferta (Oferty ofe) throws ClassNotFoundException {
-        opisFieldEdit.setText(ofe.getOpis());
-        dataPoczFieldEdit.setText(String.valueOf(ofe.getData_pocz()));
-        dataKoncFieldEdit.setText(String.valueOf(ofe.getData_konc()));
-        cenaFieldEdit.setText(String.valueOf(ofe.getCena()));
-    }
-    // dodawanie oferty
+    //*************************************
+    //Dodaje oferte
+    //*************************************
     @FXML
     private void insertOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
@@ -183,6 +171,9 @@ public class AdminController {
             throw e;
         }
     }
+    //*************************************
+    // Aktualizuje oferte
+    //*************************************
     @FXML
     private void updateOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
@@ -194,6 +185,9 @@ public class AdminController {
             throw e;
         }
     }
+    //*************************************
+    // Aktualicuje wplate
+    //*************************************
     @FXML
     private void updateWpl (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
@@ -205,5 +199,33 @@ public class AdminController {
             throw e;
         }
     }
-
+    //*************************************
+    // Uzupelnia textField'y po kliknieciu na element w tabview
+    //*************************************
+    @FXML
+    private void getOfertaOnClick(){
+        oferty_admin.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                return;
+            }
+                idOfertyEdit.setText(String.valueOf(newValue.getId_oferty()));
+                opisFieldEdit.setText(newValue.getOpis());
+                dataPoczFieldEdit.setText(String.valueOf(newValue.getData_pocz()));
+                dataKoncFieldEdit.setText(String.valueOf(newValue.getData_konc()));
+                cenaFieldEdit.setText(String.valueOf(newValue.getCena()));
+        });
+    }
+    //*************************************
+    // Uzupelnia textField'y po kliknieciu na element w tabview
+    //*************************************
+    @FXML
+    private void getZamowienieOnClick(){
+        uzytkownicy_admin.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null) {
+                return;
+            }
+                idZamowieniaEdit.setText(String.valueOf(newValue.getId_zamowienia()));
+                wplata.setValue(newValue.getWplata());
+        });
+    }
 }

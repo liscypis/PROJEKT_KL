@@ -13,7 +13,9 @@ import java.sql.SQLException;
  */
 public class UzytkownicyAdmin {
 
-    //SELECT * Uzytkownicy Admin
+    //*************************************
+    //SELECT  FROM Uzytkowncy
+    //*************************************
     public static ObservableList<Uzytkownicy> searchUzytkownicy () throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT zamowienia.id_zamowienia, oferty.id_oferty, uzytkownicy.id_uzytkownika, imie, nazwisko, wplata, ubezpieczenie FROM oferty, uzytkownicy, zamowienia where zamowienia.id_uzytkownika = uzytkownicy.id_uzytkownika and zamowienia.id_oferty = oferty.id_oferty";
@@ -34,7 +36,9 @@ public class UzytkownicyAdmin {
         }
     }
 
-    // dodawanie uzytkownikow do listy
+    //*************************************
+    // Dodanie uzytkownikow do listy
+    //*************************************
     public static ObservableList<Uzytkownicy> getUzywkownicyList(ResultSet rs) throws SQLException
     {
         ObservableList<Uzytkownicy> uzytkownicyList = FXCollections.observableArrayList();
