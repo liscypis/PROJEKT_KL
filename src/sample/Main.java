@@ -35,32 +35,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("view/login.fxml"));
         primaryStage.setTitle("Biuro podróży nigdy więcej");
-        primaryStage.setScene(new Scene(root, 200, 200));
+        primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
+        primaryStage.setResizable(false);
         ConnectToDatabase.connect();
 
-    }
-    @FXML
-    public void loadAdminInterface(ActionEvent event)throws IOException {
-        ((Node)(event.getSource())).getScene().getWindow().hide();  // zamyka okno logowania
-        Parent root = FXMLLoader.load(getClass().getResource("view/admin.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Biuro podróży nigdy więcej");
-        stage.setScene(new Scene(root));
-        stage.show();
-
-
-
-    }
-
-    @FXML
-    public void loadUserInterface(ActionEvent event) throws IOException {
-        ((Node)(event.getSource())).getScene().getWindow().hide();  // zamyka okno logowania
-        Parent root = FXMLLoader.load(getClass().getResource("view/user.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Biuro podróży nigdy więcej");
-        stage.setScene(new Scene(root));
-        stage.show();
     }
 
 

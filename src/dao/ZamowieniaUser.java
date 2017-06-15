@@ -12,9 +12,9 @@ import java.sql.SQLException;
  */
 public class ZamowieniaUser {
     //SELECT * ZAMOWIENIA user
-    public static ObservableList<Zamowienia> searchZamowienia () throws SQLException, ClassNotFoundException {
+    public static ObservableList<Zamowienia> searchZamowienia (int id_usera) throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT oferty.opis,ubezpieczenie,wplata FROM zamowienia, oferty where zamowienia.id_oferty = oferty.id_oferty";
+        String selectStmt = "SELECT oferty.opis,ubezpieczenie,wplata FROM zamowienia, oferty where zamowienia.id_oferty = oferty.id_oferty AND zamowienia.id_uzytkownika="+id_usera+"";
 
         //Execute SELECT statement
         try {

@@ -2,6 +2,7 @@ DROP TABLE OFERTY CASCADE CONSTRAINT PURGE;
 DROP TABLE ZAMOWIENIA CASCADE CONSTRAINT PURGE;
 DROP TABLE UZYTKOWNICY CASCADE CONSTRAINT PURGE;
 DROP SEQUENCE oferty_seq;
+DROP SEQUENCE zamowienia_seq;
 CREATE TABLE OFERTY (
   ID_OFERTY NUMBER NOT NULL PRIMARY KEY,
   OPIS VARCHAR2(4000) NOT NULL,
@@ -32,7 +33,13 @@ CREATE SEQUENCE oferty_seq
   INCREMENT BY 1
   CACHE 200;
 
-insert into oferty values(oferty_seq.nextval,'Tropical Islands',432.43,'2017-06-02','2017-06-17',5);
+CREATE SEQUENCE zamowienia_seq
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 200;
+
+
+insert into oferty values(oferty_seq.nextval,'Tropical Islands',432.43,'2017-06-02','2017-06-17',0);
 insert into oferty values(oferty_seq.nextval,'Legoland',130,'2017-05-04','2017-05-05',5);
 insert into oferty values(oferty_seq.nextval,'Berlin - Festiwal Piwa',99,'2017-06-05','2017-06-07',4);
 insert into oferty values(oferty_seq.nextval,'Ostrawa',109,'2017-04-05','2022-04-05',2);
@@ -53,7 +60,7 @@ insert into oferty values(oferty_seq.nextval,'Bułgaria, Rumunia - Bałkańskie 
 insert into oferty values(oferty_seq.nextval,'City Break - Ateny',947,'2017-07-02','2017-07-10',6);
 insert into oferty values(oferty_seq.nextval,'Hotel Tina - Tunezja',500,'2017-07-04','2017-07-20',4);
 
-insert into uzytkownicy values(1,'Damian','Kowalski','Magnuu','admin');
+insert into uzytkownicy values(1,'Damian','Kowalski','admin','admin');
 insert into uzytkownicy values(2,'Dorota','Mąka','DorotaBest','zDD7as');
 insert into uzytkownicy values(3,'Marek','Mostowiak','Marecki','FHe445');
 insert into uzytkownicy values(4,'Agnieszka','Kolanowska','Agnieszka_Kow','CVV74A');
@@ -74,25 +81,24 @@ insert into uzytkownicy values(18,'Szymon','Kokon','Szymon93','sdfdsffff');
 insert into uzytkownicy values(19,'Anna','Rabczyńska','AnnaKowalska','asdww2231');
 insert into uzytkownicy values(20,'Rafał','Wierczyński','Rafaello','fffghyt@1!');
 
-insert into zamowienia values(1,1,3,'Tak','Nie');
-insert into zamowienia values(2,2,2,'Tak','Nie');
-insert into zamowienia values(3,3,1,'Tak','Nie');
-insert into zamowienia values(4,4,4,'Tak','Nie');
-insert into zamowienia values(5,5,5,'Tak','Nie');
-insert into zamowienia values(6,6,10,'Tak','Nie');
-insert into zamowienia values(7,10,11,'Tak','Nie');
-insert into zamowienia values(8,7,6,'Tak','Nie');
-insert into zamowienia values(9,11,8,'Tak','Nie');
-insert into zamowienia values(10,8,7,'Tak','Nie');
-insert into zamowienia values(11,9,9,'Tak','Nie');
-insert into zamowienia values(12,15,12,'Tak','Nie');
-insert into zamowienia values(13,13,13,'Tak','Nie');
-insert into zamowienia values(14,14,14,'Tak','Nie');
-insert into zamowienia values(15,12,15,'Tak','Nie');
-insert into zamowienia values(16,16,16,'Tak','Nie');
-insert into zamowienia values(17,17,17,'Tak','Nie');
-insert into zamowienia values(18,20,19,'Tak','Nie');
-insert into zamowienia values(19,19,18,'Tak','Nie');
-insert into zamowienia values(20,18,20,'Tak','Nie');
-insert into zamowienia values(21,18,20,'Tak','Nie');
-
+insert into zamowienia values(zamowienia_seq.nextval,1,3,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,2,2,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,3,1,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,4,4,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,5,5,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,6,10,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,10,11,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,7,6,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,11,8,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,8,7,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,9,9,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,15,12,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,13,13,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,14,14,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,12,15,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,16,16,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,17,17,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,20,19,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,19,18,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,18,20,'Tak','Nie');
+insert into zamowienia values(zamowienia_seq.nextval,18,20,'Tak','Nie');
