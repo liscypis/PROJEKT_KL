@@ -10,8 +10,8 @@ import java.sql.SQLException;
 /**
  * Created by Wojtek on 15.06.2017.
  */
-public class LoginWindow {
-    public static Login checkLogin (String  login, String haslo) throws SQLException, ClassNotFoundException {
+public class LoginDAO {
+    public static Login checkLoginAndPassword (String  login, String haslo) throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
         String selectStmt = "SELECT id_uzytkownika  FROM uzytkownicy WHERE login= '"+login+"' AND haslo= '"+haslo+"'";
 

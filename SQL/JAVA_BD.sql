@@ -3,6 +3,7 @@ DROP TABLE ZAMOWIENIA CASCADE CONSTRAINT PURGE;
 DROP TABLE UZYTKOWNICY CASCADE CONSTRAINT PURGE;
 DROP SEQUENCE oferty_seq;
 DROP SEQUENCE zamowienia_seq;
+DROP SEQUENCE uzytkownicy_seq;
 CREATE TABLE OFERTY (
   ID_OFERTY NUMBER NOT NULL PRIMARY KEY,
   OPIS VARCHAR2(4000) NOT NULL,
@@ -38,6 +39,10 @@ CREATE SEQUENCE zamowienia_seq
   INCREMENT BY 1
   CACHE 200;
 
+ CREATE SEQUENCE uzytkownicy_seq
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 200;
 
 insert into oferty values(oferty_seq.nextval,'Tropical Islands',432.43,'2017-06-02','2017-06-17',0);
 insert into oferty values(oferty_seq.nextval,'Legoland',130,'2017-05-04','2017-05-05',5);
@@ -60,26 +65,26 @@ insert into oferty values(oferty_seq.nextval,'Bułgaria, Rumunia - Bałkańskie 
 insert into oferty values(oferty_seq.nextval,'City Break - Ateny',947,'2017-07-02','2017-07-10',6);
 insert into oferty values(oferty_seq.nextval,'Hotel Tina - Tunezja',500,'2017-07-04','2017-07-20',4);
 
-insert into uzytkownicy values(1,'Damian','Kowalski','admin','admin');
-insert into uzytkownicy values(2,'Dorota','Mąka','DorotaBest','zDD7as');
-insert into uzytkownicy values(3,'Marek','Mostowiak','Marecki','FHe445');
-insert into uzytkownicy values(4,'Agnieszka','Kolanowska','Agnieszka_Kow','CVV74A');
-insert into uzytkownicy values(5,'Dorota','Mirecka','Dorota_s','zDD7as');
-insert into uzytkownicy values(6,'Agnieszka','Kotecka','Magnuu','1123_KS');
-insert into uzytkownicy values(7,'Maciej','Baranowski','pliss','ASls$23');
-insert into uzytkownicy values(8,'Adam','Pakulski','Domcia','aaa445GzZ');
-insert into uzytkownicy values(9,'Ewelina','Lis','Emilly_girl','asloOO991');
-insert into uzytkownicy values(10,'Krzysztof','Kwiatkowski','Krzysiu_arczi','avatarypw');
-insert into uzytkownicy values(11,'Szymon','Lącki','Ciapek','dupek');
-insert into uzytkownicy values(12,'Arkadiusz','Barczyński','Arczi96','hasloHaslo');
-insert into uzytkownicy values(13,'Piotr','Składowski','PiterPa','helloKitty55');
-insert into uzytkownicy values(14,'Szymon','Ryszowski','SzymonWinn','aa0001lDD');
-insert into uzytkownicy values(15,'Grzegorz','Stańco','Grzesiek','bestbesty');
-insert into uzytkownicy values(16,'Agnieszka','Rolewska','AgnieszkaNowa','asf55');
-insert into uzytkownicy values(17,'Marcin','Romanowski','Marcinek_m','fgdhgf67');
-insert into uzytkownicy values(18,'Szymon','Kokon','Szymon93','sdfdsffff');
-insert into uzytkownicy values(19,'Anna','Rabczyńska','AnnaKowalska','asdww2231');
-insert into uzytkownicy values(20,'Rafał','Wierczyński','Rafaello','fffghyt@1!');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Damian','Kowalski','admin','admin');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Dorota','Mąka','DorotaBest','zDD7as');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Marek','Mostowiak','Marecki','FHe445');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Agnieszka','Kolanowska','Agnieszka_Kow','CVV74A');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Dorota','Mirecka','Dorota_s','zDD7as');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Agnieszka','Kotecka','Magnuu','1123_KS');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Maciej','Baranowski','pliss','ASls$23');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Adam','Pakulski','Domcia','aaa445GzZ');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Ewelina','Lis','Emilly_girl','asloOO991');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Krzysztof','Kwiatkowski','Krzysiu_arczi','avatarypw');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Szymon','Lącki','Ciapek','dupek');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Arkadiusz','Barczyński','Arczi96','hasloHaslo');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Piotr','Składowski','PiterPa','helloKitty55');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Szymon','Ryszowski','SzymonWinn','aa0001lDD');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Grzegorz','Stańco','Grzesiek','bestbesty');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Agnieszka','Rolewska','AgnieszkaNowa','asf55');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Marcin','Romanowski','Marcinek_m','fgdhgf67');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Szymon','Kokon','Szymon93','sdfdsffff');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Anna','Rabczyńska','AnnaKowalska','asdww2231');
+insert into uzytkownicy values(uzytkownicy_seq.nextval,'Rafał','Wierczyński','Rafaello','fffghyt@1!');
 
 insert into zamowienia values(zamowienia_seq.nextval,1,3,'Tak','Nie');
 insert into zamowienia values(zamowienia_seq.nextval,2,2,'Tak','Nie');

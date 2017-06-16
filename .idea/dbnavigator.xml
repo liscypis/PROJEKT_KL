@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="02fd8c9c-0272-4d23-99d8-8bed20189b4b">
-        <schema name="HR" object-types="column, function, materialized view, package, package function, package type, sequence, synonym, table, type, type function, view" />
+        <schema name="HR" object-types="column, materialized view, package, sequence, synonym, table, type, view" />
         <schema name="PUBLIC" object-types="materialized view, package, sequence, synonym, table, type, view" />
       </connection>
     </loaded-nodes>

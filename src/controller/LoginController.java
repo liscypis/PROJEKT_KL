@@ -1,8 +1,7 @@
 package controller;
 
 
-import dao.LoginWindow;
-import javafx.collections.ObservableList;
+import dao.LoginDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +34,7 @@ public class LoginController {
     private void checkLog(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         try {
             //Get all information
-            Login lg = LoginWindow.checkLogin(login.getText(),password.getText());
+            Login lg = LoginDAO.checkLoginAndPassword(login.getText(),password.getText());
             if(lg == null) {
                 statement.setText("Błędne haslo lub login");
             }

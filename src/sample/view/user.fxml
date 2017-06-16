@@ -38,7 +38,7 @@
              </children>
              </Pane>
          </content></Tab>
-    <Tab text="ZAMÓWIENIA">
+    <Tab text="TWOJE ZAMOWIENIA">
 
          <content>
              <Pane prefHeight="200.0" prefWidth="200.0">
