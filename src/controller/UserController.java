@@ -63,6 +63,29 @@ public class UserController {
     @FXML
     private Label loginUz;
     private Login log;
+
+    @FXML
+    private TextField nameEdit;
+    @FXML
+    private TextField newNameEdit;
+    @FXML
+    private TextField surnameEdit;
+    @FXML
+    private TextField newSurameEdit;
+    @FXML
+    private TextField loginEdit;
+    @FXML
+    private TextField newLoginEdit;
+    @FXML
+    private PasswordField passwordEdit;
+    @FXML
+    private PasswordField newPassworEdit;
+    @FXML
+    private PasswordField newPassworRepeatEdit;
+    @FXML
+    private Label statement;
+
+
     @FXML
     private void initialize () throws SQLException, ClassNotFoundException {
         id_oferty.setCellValueFactory(cellData -> cellData.getValue().id_ofertyProperty().asObject());

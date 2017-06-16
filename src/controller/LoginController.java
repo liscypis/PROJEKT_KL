@@ -30,6 +30,9 @@ public class LoginController {
     private void initialize () throws SQLException, ClassNotFoundException{
 
     }
+    //*************************************
+    // sprawdza login i haslo, ładuje odpowiedni interface(admin or user)
+    //*************************************
     @FXML
     private void checkLog(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         try {
@@ -49,7 +52,6 @@ public class LoginController {
                     Login.setId(lg.getId_uz());
                     loadUserInterface(event);
                 }
-
             }
         } catch (SQLException e){
             System.out.println("Error occurred while getting information from DB.\n" + e);
@@ -57,6 +59,9 @@ public class LoginController {
         }
 
     }
+    //*************************************
+    // wyświetla interface usera
+    //*************************************
     @FXML
     public void loadUserInterface(ActionEvent event) throws IOException {
         ((Node)(event.getSource())).getScene().getWindow().hide();  // zamyka okno logowania
@@ -67,6 +72,9 @@ public class LoginController {
         stage.show();
         stage.setResizable(false);
     }
+    //*************************************
+    // wyś int adm
+    //*************************************
     @FXML
     public void loadAdminInterface(ActionEvent event)throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();  // zamyka okno logowania
@@ -77,6 +85,9 @@ public class LoginController {
         stage.show();
         stage.setResizable(false);
     }
+    //*************************************
+    // wyś int rej
+    //*************************************
     @FXML
     public void loadRegistrationInterface(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/sample/view/registration.fxml"));
@@ -86,9 +97,6 @@ public class LoginController {
         stage.show();
         stage.setResizable(false);
     }
-    @FXML
-    private void test(){
 
-    }
 
 }

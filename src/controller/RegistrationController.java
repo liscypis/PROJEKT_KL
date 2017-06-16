@@ -39,6 +39,9 @@ public class RegistrationController {
     private void initialize () throws SQLException, ClassNotFoundException{
         logIn.setVisible(false);
     }
+    //*************************************
+    // sprawdza czy login jest wolny, pusty
+    //*************************************
     @FXML
     private boolean checkFreeLogin(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         try {
@@ -62,7 +65,9 @@ public class RegistrationController {
             throw e;
         }
     }
-    // sprawdza czy uzupełniono wszytkie pola
+    //*************************************
+    // sprawdza czy uzupełniono wszytie pola
+    //*************************************
     private boolean checkFields(){
         if(nameField.getText().trim().equals("") || surnameField.getText().trim().equals("")
                 || loginField.getText().trim().equals("") || passwordField.getText().trim().equals("") || passwordField_2.getText().trim().equals("")) {
@@ -71,16 +76,25 @@ public class RegistrationController {
         else
             return true;
     }
+    //*************************************
+    // sprawdza hasła czy są takie same
+    //*************************************
     private boolean checkPassword() {
         if(passwordField.getText().trim().equals(passwordField_2.getText().trim())){
             return true;
         }
         else return false;
     }
+    //*************************************
+    // zamyka okno rejestracji
+    //*************************************
     @FXML
     private void closeRegistration(ActionEvent actionEvent) {
         ((Node)(actionEvent.getSource())).getScene().getWindow().hide();  // zamyka okno logowania
     }
+    //*************************************
+    // dodaje nowego uzytkownika
+    //*************************************
     @FXML
     private void addNewUser (ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
         if(checkFields() == false)

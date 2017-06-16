@@ -92,6 +92,9 @@ public class OfertyUser {
         }
         return ofe;
     }
+    //*************************************
+    // dodaje zamownienie
+    //*************************************
     public static void addZam (int id_uz, int id_of, String ubezpieczenie) throws SQLException, ClassNotFoundException {
         //Declare a insert statement
         String updateStmt = "insert into ZAMOWIENIA values(zamowienia_seq.nextval,"+id_uz+","+id_of+",'"+ubezpieczenie+"','Nie')";
