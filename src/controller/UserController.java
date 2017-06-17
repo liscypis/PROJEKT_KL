@@ -1,6 +1,8 @@
 package controller;
 
+import dao.EditUser;
 import dao.OfertyUser;
+import dao.Registration;
 import dao.ZamowieniaUser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,12 +11,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import tables.Login;
 import tables.Oferty;
+import tables.Uzytkownicy;
 import tables.Zamowienia;
 
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
 
+import static dao.EditUser.checkUserPassword;
+import static dao.EditUser.getImieAndNazwisko;
 import static dao.OfertyUser.checkLogintoLabel;
 
 /**
@@ -64,6 +70,7 @@ public class UserController {
     private Label loginUz;
     private Login log;
 
+    // do edycji
     @FXML
     private TextField nameEdit;
     @FXML
@@ -84,6 +91,7 @@ public class UserController {
     private PasswordField newPassworRepeatEdit;
     @FXML
     private Label statement;
+    private Uzytkownicy uz;
 
 
     @FXML
@@ -99,14 +107,19 @@ public class UserController {
         wplata.setCellValueFactory(cellData -> cellData.getValue().wplataProperty());
         ubezpieczenie.setCellValueFactory(cellData -> cellData.getValue().ubezpieczenieProperty());
 
-
         // do wyswietlania loginu
         log = checkLogintoLabel(Login.getId());
         loginUz.setText(log.getLogin());
+        loginEdit.setText(log.getLogin());
         ubezpieczenieCB.setValue("Tak");
         ubezpieczenieCB.setItems(ubezpieczenieCBl);
         idUzytkownikaField.setText(String.valueOf(Login.getId()));
         searchZamowienia();
+
+        // do uzupełniania edycji
+        uz = getImieAndNazwisko(Integer.valueOf(idUzytkownikaField.getText()));
+        nameEdit.setText(uz.getImie());
+        surnameEdit.setText(uz.getNazwisko());
 
     }
     //*************************************
@@ -176,7 +189,7 @@ public class UserController {
     // Dodaje zamownienie i dekrementuje ilosc mniejsc w tab oferty dajen oferty
     //*************************************
     @FXML
-    private void addZamowienie (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void addZamowienie () throws SQLException, ClassNotFoundException {
         try {
             OfertyUser.addZam(Integer.valueOf(idUzytkownikaField.getText()),Integer.valueOf(idOfertyField.getText()),String.valueOf(ubezpieczenieCB.getValue()));
             System.out.println("Zamoienie zlozone! \n");
@@ -187,6 +200,113 @@ public class UserController {
             System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
             throw e;
         }
+    }
+    @FXML
+    private void editUserName () throws SQLException, ClassNotFoundException {
+        if(newNameEdit.getText().trim().equals("")) {
+            statement.setText("NIE PODANO IMIENIA");
+        }
+        else {
+            try {
+                EditUser.updateName(Integer.valueOf(idUzytkownikaField.getText()) ,newNameEdit.getText().trim());
+                statement.setText("IMIE ZOSTAłO ZMIENIONE");
+                nameEdit.setText(newNameEdit.getText());
+                newNameEdit.setText(null);
+            } catch (SQLException e) {
+                System.out.println("Wystapił poblem przy aktualizacji imienia " + e);
+                throw e;
+            }
+        }
+    }
+    @FXML
+    private void editUserSurname () throws SQLException, ClassNotFoundException {
+        if(newSurameEdit.getText().trim().equals("")) {
+            statement.setText("NIE PODANO NAZWISKA");
+        }
+        else {
+            try {
+                EditUser.updateSurname(Integer.valueOf(idUzytkownikaField.getText()) ,newSurameEdit.getText().trim());
+                statement.setText("NAZWISKO ZOSTAłO ZMIENIONE");
+                surnameEdit.setText(newSurameEdit.getText());
+                newSurameEdit.setText(null);
+            } catch (SQLException e) {
+                System.out.println("Wystapił poblem przy aktualizacji nazwiska " + e);
+                throw e;
+            }
+        }
+    }
+
+    @FXML
+    private void editUserLogin () throws SQLException, ClassNotFoundException, IOException {
+        if(checkLogin() == false){
+        }
+        else {
+            try {
+                EditUser.updateLogin(Integer.valueOf(idUzytkownikaField.getText()) ,newLoginEdit.getText());
+                statement.setText("LOGIN ZOSTAł ZMIENIONY");
+                loginEdit.setText(newLoginEdit.getText());
+                newLoginEdit.setText(null);
+            } catch (SQLException e) {
+                System.out.println("Wystapił poblem przy aktualizacji loginu " + e);
+                throw e;
+            }
+        }
+    }
+    @FXML
+    private void editUserPassword () throws SQLException, ClassNotFoundException {
+        Login lg = checkUserPassword(Integer.valueOf(idUzytkownikaField.getText()),passwordEdit.getText());
+        if(lg == null) {
+            statement.setText("PODANO BLEDNE HASLO!");
+        }
+        else{
+            if(newPassworEdit.getText().equals("") || newPassworRepeatEdit.getText().equals("")) {
+                statement.setText("PODAJ NOWE HASłA");
+            }
+            else {
+                if(checkPassword() == false) {
+                    statement.setText("PODALES DWA ROZNE HASLA");
+                }
+                else {
+                    try {
+                        EditUser.updatePassword(Integer.valueOf(idUzytkownikaField.getText()) ,newPassworEdit.getText());
+                        statement.setText("HASLO ZOSTAłO ZMIENIONE");
+                        passwordEdit.setText(newSurameEdit.getText());
+                        newPassworEdit.setText(null);
+                        newPassworRepeatEdit.setText(null);
+                    } catch (SQLException e) {
+                        System.out.println("Wystapił poblem przy aktualizacji hasla " + e);
+                        throw e;
+                    }
+                }
+            }
+        }
+    }
+    private boolean checkLogin() throws SQLException, ClassNotFoundException, IOException {
+        try {
+            //Get all information
+            Login lg = Registration.checkLogin(newLoginEdit.getText());
+            if(lg == null) {
+                if(newLoginEdit.getText().trim().equals("")) {
+                    statement.setText("NIE PODANO LOGINU ");
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+            else {
+                statement.setText("LOGIN ZAJĘTY, WYBIERZ INNY");
+                return false;
+            }
+        } catch (SQLException e){
+            System.out.println("Error occurred while getting information from DB.\n" + e);
+            throw e;
+        }
+    }
+    private boolean checkPassword() {
+        if(newPassworEdit.getText().trim().equals(newPassworRepeatEdit.getText().trim())){
+            return true;
+        }
+        else return false;
     }
 
 }

@@ -2,7 +2,6 @@ package dao;
 
 import oracle.ConnectToDatabase;
 import tables.Login;
-import tables.Oferty;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

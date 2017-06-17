@@ -59,9 +59,9 @@
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="surnameEdit" layoutX="14.0" layoutY="41.0" />
+                  <TextField fx:id="surnameEdit" editable="false" layoutX="14.0" layoutY="41.0" />
                   <TextField fx:id="newSurameEdit" layoutX="192.0" layoutY="41.0" />
-                  <TextField fx:id="nameEdit" layoutX="14.0" layoutY="118.0" />
+                  <TextField fx:id="nameEdit" editable="false" layoutX="14.0" layoutY="118.0" />
                   <TextField fx:id="newNameEdit" layoutX="192.0" layoutY="118.0" />
                   <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualne nazwisko" />
                   <Text layoutX="192.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj nowe nazwisko" />
@@ -70,14 +70,14 @@
                   <Text layoutX="14.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj aktualne haslo" />
                   <Text layoutX="192.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj nowe hasło" />
                   <Text layoutX="353.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powtórz nowe hasło" />
-                  <Button layoutX="374.0" layoutY="41.0" mnemonicParsing="false" text="EDYTUJ" />
-                  <Button layoutX="374.0" layoutY="118.0" mnemonicParsing="false" text="EDYTUJ" />
-                  <Button layoutX="523.0" layoutY="215.0" mnemonicParsing="false" text="EDYTUJ" />
-                  <TextField fx:id="loginEdit" layoutX="12.0" layoutY="173.0" />
+                  <Button layoutX="374.0" layoutY="41.0" mnemonicParsing="false" onAction="#editUserSurname" text="EDYTUJ" />
+                  <Button layoutX="374.0" layoutY="118.0" mnemonicParsing="false" onAction="#editUserName" text="EDYTUJ" />
+                  <Button layoutX="523.0" layoutY="215.0" mnemonicParsing="false" onAction="#editUserPassword" text="EDYTUJ" />
+                  <TextField fx:id="loginEdit" editable="false" layoutX="12.0" layoutY="173.0" />
                   <TextField fx:id="newLoginEdit" layoutX="190.0" layoutY="173.0" />
                   <Text layoutX="12.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualny login" />
                   <Text layoutX="190.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj nowy login" />
-                  <Button layoutX="372.0" layoutY="173.0" mnemonicParsing="false" text="EDYTUJ" />
+                  <Button layoutX="372.0" layoutY="173.0" mnemonicParsing="false" onAction="#editUserLogin" text="EDYTUJ" />
                   <PasswordField fx:id="passwordEdit" layoutX="12.0" layoutY="215.0" />
                   <PasswordField fx:id="newPassworEdit" layoutX="190.0" layoutY="215.0" />
                   <PasswordField fx:id="newPassworRepeatEdit" layoutX="353.0" layoutY="215.0" />

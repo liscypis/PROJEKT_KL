@@ -60,7 +60,7 @@
                     </columns>
                 </TableView>
                   <Label layoutX="445.0" layoutY="539.0" prefHeight="20.0" prefWidth="135.0" text="EDYCJA ZAMOWIENIA" textAlignment="CENTER" textFill="#f20707" />
-                  <TextField fx:id="idZamowieniaEdit" layoutX="580.0" layoutY="536.0" prefHeight="25.0" prefWidth="114.0" promptText="ID ZAMOWIENIA" />
+                  <TextField fx:id="idZamowieniaEdit" editable="false" layoutX="580.0" layoutY="536.0" prefHeight="25.0" prefWidth="114.0" promptText="ID ZAMOWIENIA" />
                   <ChoiceBox fx:id="wplata" layoutX="763.0" layoutY="536.0" prefHeight="25.0" prefWidth="45.0" />
                   <Button layoutX="822.0" layoutY="537.0" mnemonicParsing="false" onAction="#updateWpl" prefHeight="13.0" prefWidth="64.0" text="EDYTUJ" />
                   <Label layoutX="708.0" layoutY="540.0" prefHeight="17.0" prefWidth="54.0" text="WPŁATA" textFill="#eb0808" />

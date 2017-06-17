@@ -62,7 +62,7 @@ public class OfertyUser {
     //*************************************
     public static Login checkLogintoLabel (Integer id) throws SQLException, ClassNotFoundException {
         //Declare a SELECT statement
-        String selectStmt = "SELECT login  FROM uzytkownicy WHERE id_uzytkownika="+id+"";
+        String selectStmt = "SELECT login FROM uzytkownicy WHERE id_uzytkownika="+id+"";
 
         //Execute SELECT statement
         try {

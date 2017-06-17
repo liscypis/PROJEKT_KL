@@ -43,7 +43,7 @@ public class RegistrationController {
     // sprawdza czy login jest wolny, pusty
     //*************************************
     @FXML
-    private boolean checkFreeLogin(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
+    private boolean checkFreeLogin() throws SQLException, ClassNotFoundException, IOException {
         try {
             //Get all information
             Login lg = Registration.checkLogin(loginField.getText());
@@ -96,7 +96,7 @@ public class RegistrationController {
     // dodaje nowego uzytkownika
     //*************************************
     @FXML
-    private void addNewUser (ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
+    private void addNewUser () throws SQLException, ClassNotFoundException, IOException {
         if(checkFields() == false)
         {
             infoStatement.setText("UZUPEŁNIJ WSZYTKIE POLA");
@@ -107,7 +107,7 @@ public class RegistrationController {
                 infoStatement.setText("PODAŁEŚ DWA RÓŻNE HASŁA");
             }
             else{
-                if(checkFreeLogin(actionEvent) == false) {
+                if(checkFreeLogin() == false) {
 
                 }
                 else{
