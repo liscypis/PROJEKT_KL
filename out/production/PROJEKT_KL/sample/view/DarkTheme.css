@@ -1,0 +1,49 @@
+.thebackground {
+    -fx-background-color : #B3E5FC;
+    }
+
+.sectionTitle {
+    -fx-text-fill   : #01579B;
+    -fx-font-weight : bolder;
+    -fx-font-size   : 14px;
+    }
+
+.sectionTitleHeadUser {
+     -fx-text-fill   : #CC0000;
+     -fx-font-weight : bolder;
+     -fx-font-size   : 14px;
+    }
+
+.sectionTitleHead {
+        -fx-text-fill   : #0000b3;
+        -fx-font-weight : bolder;
+        -fx-font-size   : 12px;
+        }
+
+.warningText {
+        -fx-text-fill   : #990000;
+        -fx-font-weight : bolder;
+        -fx-font-size   : 12px;
+        }
+
+.table-view {
+    -fx-base: #00004d;
+    -fx-control-inner-background: #507CA6;
+    -fx-background-color: #507CA6;
+    -fx-padding: 2;
+}
+.inputSection {
+    -fx-background-color : #E1F5FE;
+    -fx-text-fill   : #006699;
+    -fx-font-weight : bolder;
+    }
+
+.button {
+    -fx-background-color : #29B6F6;
+    -fx-text-fill        : #E1F5FE;
+    -fx-font-weight      : 900;
+    }
+
+.button:hover {
+    -fx-background-color : #01579B;
+    }

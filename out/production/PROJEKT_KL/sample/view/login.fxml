@@ -7,20 +7,20 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="299.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="299.0" styleClass="thebackground" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="188.0" mnemonicParsing="false" onAction="#loadRegistrationInterface" text="Rejestracja">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="106.0" layoutY="188.0" mnemonicParsing="false" onAction="#loadRegistrationInterface" stylesheets="@DarkTheme.css" text="Rejestracja">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="login" layoutX="67.0" layoutY="33.0" prefHeight="38.0" prefWidth="170.0" promptText="login" />
-      <PasswordField fx:id="password" layoutX="68.0" layoutY="83.0" prefHeight="38.0" prefWidth="170.0" promptText="password" />
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="89.0" layoutY="131.0" mnemonicParsing="false" onAction="#checkLog" prefHeight="38.0" prefWidth="127.0" text="Zaloguj">
+      <TextField fx:id="login" layoutX="67.0" layoutY="33.0" prefHeight="38.0" prefWidth="170.0" promptText="login" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+      <PasswordField fx:id="password" layoutX="68.0" layoutY="83.0" prefHeight="38.0" prefWidth="170.0" promptText="password" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="89.0" layoutY="131.0" mnemonicParsing="false" onAction="#checkLog" prefHeight="38.0" prefWidth="127.0" stylesheets="@DarkTheme.css" text="Zaloguj">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Label fx:id="statement" layoutX="89.0" layoutY="169.0" prefHeight="17.0" prefWidth="127.0" />
+      <Label fx:id="statement" layoutX="89.0" layoutY="169.0" prefHeight="17.0" prefWidth="149.0" styleClass="warningText" stylesheets="@DarkTheme.css" textAlignment="CENTER" />
    </children>
 </Pane>

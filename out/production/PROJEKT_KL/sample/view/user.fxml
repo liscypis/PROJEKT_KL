@@ -12,44 +12,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="thebackground" stylesheets="@DarkTheme.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserController">
   <tabs>
-    <Tab text="OFERTY">
-         <content>
-             <Pane prefHeight="200.0" prefWidth="200.0">
-             <children>
-            <TableView fx:id="oferty_user" editable="true" onMouseClicked="#getCenaOnClick" prefHeight="541.0" prefWidth="800.0">
-              <columns>
-                        <TableColumn fx:id="id_oferty" minWidth="0.0" prefWidth="77.0" resizable="false" text="ID_OFERTY" visible="false" />
-                <TableColumn fx:id="opis" minWidth="0.0" prefWidth="398.0" resizable="false" text="OPIS" />
-                  <TableColumn fx:id="cena" minWidth="0.0" prefWidth="78.0" resizable="false" text="CENA" />
-                  <TableColumn fx:id="data_pocz" minWidth="0.0" prefWidth="143.0" resizable="false" sortable="false" text="WYJAZD" />
-                  <TableColumn fx:id="data_konc" minWidth="0.0" prefWidth="180.0" resizable="false" sortable="false" text="POWROT" />
-                        <TableColumn fx:id="ilosc_miejsc" minWidth="0.0" prefWidth="77.0" resizable="false" text="ILOSC_MIEJSC" visible="false" />
-              </columns>
-            </TableView>
-                  <Label layoutX="7.0" layoutY="549.0" text="WITAJ" />
-                  <Label fx:id="loginUz" layoutX="53.0" layoutY="549.0" prefHeight="17.0" prefWidth="75.0" />
-                  <TextField fx:id="cenaWycieczki" editable="false" layoutX="346.0" layoutY="545.0" prefHeight="25.0" prefWidth="97.0" promptText="CENA" />
-                  <Label layoutX="503.0" layoutY="549.0" text="UBEZPIECZENIE" />
-                  <Button layoutX="711.0" layoutY="545.0" mnemonicParsing="false" onAction="#addZamowienie" prefHeight="25.0" prefWidth="79.0" text="KUP TERAZ" />
-                  <ChoiceBox fx:id="ubezpieczenieCB" layoutX="586.0" layoutY="545.0" prefHeight="25.0" prefWidth="70.0" />
-                  <TextField fx:id="idOfertyField" editable="false" layoutX="259.0" layoutY="545.0" prefHeight="25.0" prefWidth="25.0" promptText="ID oferty" visible="false" />
-                  <TextField fx:id="miejscaField" editable="false" layoutX="284.0" layoutY="545.0" prefHeight="25.0" prefWidth="31.0" promptText="iloscMiejsc" visible="false" />
-                  <TextField fx:id="idUzytkownikaField" editable="false" layoutX="315.0" layoutY="545.0" prefHeight="25.0" prefWidth="31.0" promptText="ID usera" visible="false" />
-             </children>
-             </Pane>
-         </content></Tab>
     <Tab text="TWOJE ZAMOWIENIA">
 
          <content>
              <Pane prefHeight="200.0" prefWidth="200.0">
              <children>
-            <TableView fx:id="zamowienia_user" prefHeight="566.0" prefWidth="800.0">
+            <TableView fx:id="zamowienia_user" layoutX="13.0" layoutY="19.0" prefHeight="519.0" prefWidth="787.0" stylesheets="@DarkTheme.css">
               <columns>
-                  <TableColumn fx:id="opis_zam" prefWidth="632.0" text="WYCIECZKA" />
-                  <TableColumn fx:id="ubezpieczenie" minWidth="0.0" prefWidth="101.0" text="UBEZPIECZENIE" />
-                  <TableColumn fx:id="wplata" minWidth="0.0" prefWidth="63.0" text="OPŁATA" />
+                  <TableColumn fx:id="opis_zam" prefWidth="612.0" text="WYCIECZKA" />
+                  <TableColumn fx:id="ubezpieczenie" minWidth="0.0" prefWidth="102.0" text="UBEZPIECZENIE" />
+                  <TableColumn fx:id="wplata" minWidth="0.0" prefWidth="82.0" text="OPŁATA" />
               </columns>
             </TableView>
              </children>
@@ -59,32 +33,58 @@
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="surnameEdit" editable="false" layoutX="14.0" layoutY="41.0" />
-                  <TextField fx:id="newSurameEdit" layoutX="192.0" layoutY="41.0" />
-                  <TextField fx:id="nameEdit" editable="false" layoutX="14.0" layoutY="118.0" />
-                  <TextField fx:id="newNameEdit" layoutX="192.0" layoutY="118.0" />
-                  <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualne nazwisko" />
-                  <Text layoutX="192.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj nowe nazwisko" />
-                  <Text layoutX="14.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualne imie" />
-                  <Text layoutX="192.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj nowe imię" />
-                  <Text layoutX="14.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj aktualne haslo" />
-                  <Text layoutX="192.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj nowe hasło" />
-                  <Text layoutX="353.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powtórz nowe hasło" />
-                  <Button layoutX="374.0" layoutY="41.0" mnemonicParsing="false" onAction="#editUserSurname" text="EDYTUJ" />
-                  <Button layoutX="374.0" layoutY="118.0" mnemonicParsing="false" onAction="#editUserName" text="EDYTUJ" />
-                  <Button layoutX="523.0" layoutY="215.0" mnemonicParsing="false" onAction="#editUserPassword" text="EDYTUJ" />
-                  <TextField fx:id="loginEdit" editable="false" layoutX="12.0" layoutY="173.0" />
-                  <TextField fx:id="newLoginEdit" layoutX="190.0" layoutY="173.0" />
-                  <Text layoutX="12.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aktualny login" />
-                  <Text layoutX="190.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podaj nowy login" />
-                  <Button layoutX="372.0" layoutY="173.0" mnemonicParsing="false" onAction="#editUserLogin" text="EDYTUJ" />
-                  <PasswordField fx:id="passwordEdit" layoutX="12.0" layoutY="215.0" />
-                  <PasswordField fx:id="newPassworEdit" layoutX="190.0" layoutY="215.0" />
-                  <PasswordField fx:id="newPassworRepeatEdit" layoutX="353.0" layoutY="215.0" />
+                  <TextField fx:id="surnameEdit" editable="false" layoutX="14.0" layoutY="41.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <TextField fx:id="newSurameEdit" layoutX="192.0" layoutY="41.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <TextField fx:id="nameEdit" editable="false" layoutX="14.0" layoutY="97.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <TextField fx:id="newNameEdit" layoutX="190.0" layoutY="97.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <Text fill="#0b15d3" layoutX="13.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Aktualne nazwisko" />
+                  <Text fill="#0b15d3" layoutX="192.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Podaj nowe nazwisko" />
+                  <Text fill="#0b15d3" layoutX="14.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Aktualne imie" />
+                  <Text fill="#0b15d3" layoutX="192.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Podaj nowe imię" />
+                  <Text fill="#0b15d3" layoutX="14.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Podaj aktualne haslo" />
+                  <Text fill="#0b15d3" layoutX="189.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Podaj nowe hasło" />
+                  <Text fill="#0b15d3" layoutX="357.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Powtórz nowe hasło" />
+                  <Button layoutX="370.0" layoutY="41.0" mnemonicParsing="false" onAction="#editUserSurname" text="EDYTUJ" />
+                  <Button layoutX="370.0" layoutY="97.0" mnemonicParsing="false" onAction="#editUserName" text="EDYTUJ" />
+                  <Button layoutX="526.0" layoutY="228.0" mnemonicParsing="false" onAction="#editUserPassword" text="EDYTUJ" />
+                  <TextField fx:id="loginEdit" editable="false" layoutX="12.0" layoutY="157.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <TextField fx:id="newLoginEdit" layoutX="190.0" layoutY="157.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <Text fill="#0b15d3" layoutX="12.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Aktualny login" />
+                  <Text fill="#0b15d3" layoutX="189.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Podaj nowy login" />
+                  <Button layoutX="370.0" layoutY="157.0" mnemonicParsing="false" onAction="#editUserLogin" text="EDYTUJ" />
+                  <PasswordField fx:id="passwordEdit" layoutX="12.0" layoutY="228.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <PasswordField fx:id="newPassworEdit" layoutX="190.0" layoutY="228.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <PasswordField fx:id="newPassworRepeatEdit" layoutX="357.0" layoutY="228.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
                   <Label fx:id="statement" layoutX="14.0" layoutY="254.0" text="INFO co SIĘ stało!!!!" />
                </children>
             </Pane>
          </content>
       </Tab>
+    <Tab text="OFERTY">
+         <content>
+             <Pane prefHeight="200.0" prefWidth="200.0">
+             <children>
+            <TableView fx:id="oferty_user" editable="true" layoutX="9.0" layoutY="21.0" onMouseClicked="#getCenaOnClick" prefHeight="501.0" prefWidth="791.0">
+              <columns>
+                        <TableColumn fx:id="id_oferty" minWidth="0.0" prefWidth="77.0" resizable="false" text="ID_OFERTY" visible="false" />
+                <TableColumn fx:id="opis" minWidth="0.0" prefWidth="398.0" resizable="false" text="OPIS" />
+                  <TableColumn fx:id="cena" minWidth="0.0" prefWidth="78.0" resizable="false" text="CENA" />
+                  <TableColumn fx:id="data_pocz" minWidth="0.0" prefWidth="143.0" resizable="false" sortable="false" text="WYJAZD" />
+                  <TableColumn fx:id="data_konc" minWidth="0.0" prefWidth="180.0" resizable="false" sortable="false" text="POWROT" />
+                        <TableColumn fx:id="ilosc_miejsc" minWidth="0.0" prefWidth="77.0" resizable="false" text="ILOSC_MIEJSC" visible="false" />
+              </columns>
+            </TableView>
+                  <Label layoutX="7.0" layoutY="549.0" styleClass="sectionTitle" stylesheets="@DarkTheme.css" text="WITAJ" />
+                  <Label fx:id="loginUz" layoutX="53.0" layoutY="549.0" prefHeight="17.0" prefWidth="75.0" styleClass="sectionTitleHeadUser" stylesheets="@DarkTheme.css" />
+                  <TextField fx:id="cenaWycieczki" editable="false" layoutX="346.0" layoutY="545.0" prefHeight="25.0" prefWidth="97.0" promptText="CENA" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <Label layoutX="491.0" layoutY="549.0" styleClass="sectionTitleHead" stylesheets="@DarkTheme.css" text="UBEZPIECZENIE" textFill="#0b15d3" />
+                  <Button layoutX="693.0" layoutY="545.0" mnemonicParsing="false" onAction="#addZamowienie" prefHeight="25.0" prefWidth="97.0" text="KUP TERAZ" />
+                  <ChoiceBox fx:id="ubezpieczenieCB" layoutX="586.0" layoutY="545.0" prefHeight="25.0" prefWidth="70.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
+                  <TextField fx:id="idOfertyField" editable="false" layoutX="259.0" layoutY="545.0" prefHeight="25.0" prefWidth="25.0" promptText="ID oferty" visible="false" />
+                  <TextField fx:id="miejscaField" editable="false" layoutX="284.0" layoutY="545.0" prefHeight="25.0" prefWidth="31.0" promptText="iloscMiejsc" visible="false" />
+                  <TextField fx:id="idUzytkownikaField" editable="false" layoutX="315.0" layoutY="545.0" prefHeight="25.0" prefWidth="31.0" promptText="ID usera" visible="false" />
+             </children>
+             </Pane>
+         </content></Tab>
   </tabs>
 </TabPane>
