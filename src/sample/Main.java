@@ -22,11 +22,9 @@ import java.io.IOException;
     i powinny mieć też ilość wonych miejsc + trasę wycieczki np KRR - Berlin - Koniec świata.
     W zamówieniach może tylko zobacyzć czy jest zapłacone za wycieczkę
 
-    PANEL ADMINA
-    MOŻE ustawić wpłatę tzn. czy jest zapłacone czy nie :D
+    DODAć wyszukiwanie ofert
 
-    LOGOWANIE
-    DODAć logowanie :D
+    zmienic edycję, żeby był tylko jeden przycisk
 
 */
 public class Main extends Application {

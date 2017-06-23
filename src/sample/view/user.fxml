@@ -44,14 +44,14 @@
                   <Text fill="#0b15d3" layoutX="14.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Podaj aktualne haslo" />
                   <Text fill="#0b15d3" layoutX="189.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Podaj nowe hasło" />
                   <Text fill="#0b15d3" layoutX="357.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Powtórz nowe hasło" />
-                  <Button layoutX="370.0" layoutY="41.0" mnemonicParsing="false" onAction="#editUserSurname" text="EDYTUJ" />
-                  <Button layoutX="370.0" layoutY="97.0" mnemonicParsing="false" onAction="#editUserName" text="EDYTUJ" />
-                  <Button layoutX="526.0" layoutY="228.0" mnemonicParsing="false" onAction="#editUserPassword" text="EDYTUJ" />
+                  <Button layoutX="370.0" layoutY="41.0" mnemonicParsing="false" onAction="#editUserSurname" text="ZAPISZ" />
+                  <Button layoutX="370.0" layoutY="97.0" mnemonicParsing="false" onAction="#editUserName" text="ZAPISZ" />
+                  <Button layoutX="526.0" layoutY="228.0" mnemonicParsing="false" onAction="#editUserPassword" text="ZAPISZ" />
                   <TextField fx:id="loginEdit" editable="false" layoutX="12.0" layoutY="157.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
                   <TextField fx:id="newLoginEdit" layoutX="190.0" layoutY="157.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
                   <Text fill="#0b15d3" layoutX="12.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Aktualny login" />
                   <Text fill="#0b15d3" layoutX="189.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionTitleHead" text="Podaj nowy login" />
-                  <Button layoutX="370.0" layoutY="157.0" mnemonicParsing="false" onAction="#editUserLogin" text="EDYTUJ" />
+                  <Button layoutX="370.0" layoutY="157.0" mnemonicParsing="false" onAction="#editUserLogin" text="ZAPISZ" />
                   <PasswordField fx:id="passwordEdit" layoutX="12.0" layoutY="228.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
                   <PasswordField fx:id="newPassworEdit" layoutX="190.0" layoutY="228.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
                   <PasswordField fx:id="newPassworRepeatEdit" layoutX="357.0" layoutY="228.0" styleClass="inputSection" stylesheets="@DarkTheme.css" />
