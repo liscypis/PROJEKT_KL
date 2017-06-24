@@ -17,11 +17,12 @@ import tables.Zamowienia;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import static dao.EditUser.checkUserPassword;
 import static dao.EditUser.getImieAndNazwisko;
-import static dao.OfertyUser.checkLogintoLabel;
+import static sample.ClientSocket.connectToSerwer;
 
 /**
  * Created by Wojtek on 13.06.2017.
@@ -95,7 +96,7 @@ public class UserController {
 
 
     @FXML
-    private void initialize () throws SQLException, ClassNotFoundException {
+    private void initialize () throws SQLException, ClassNotFoundException, IOException {
         id_oferty.setCellValueFactory(cellData -> cellData.getValue().id_ofertyProperty().asObject());
         ilosc_miejsc.setCellValueFactory(cellData -> cellData.getValue().ilosc_miejscProperty().asObject());
         opis.setCellValueFactory(cellData -> cellData.getValue().opisProperty());
@@ -108,7 +109,7 @@ public class UserController {
         ubezpieczenie.setCellValueFactory(cellData -> cellData.getValue().ubezpieczenieProperty());
 
         // do wyswietlania loginu
-        log = checkLogintoLabel(Login.getId());
+        log = (Login) connectToSerwer("Uzytkownik","SprLogin",Login.getId());
         loginUz.setText(log.getLogin());
         loginEdit.setText(log.getLogin());
         ubezpieczenieCB.setValue("Tak");
@@ -117,7 +118,9 @@ public class UserController {
         searchZamowienia();
 
         // do uzupełniania edycji
-        uz = getImieAndNazwisko(Integer.valueOf(idUzytkownikaField.getText()));
+        Uzytkownicy uzytkownicy = new Uzytkownicy();
+        uzytkownicy.setId_uzytkownika(Integer.valueOf(idUzytkownikaField.getText()));
+        uz = (Uzytkownicy) connectToSerwer("Pobierz","ImieNazwisko",uzytkownicy);
         nameEdit.setText(uz.getImie());
         surnameEdit.setText(uz.getNazwisko());
 
@@ -126,15 +129,14 @@ public class UserController {
     // Szuka i Dodaje oferty do tabview
     //*************************************
     @FXML
-    private void searchOfertyUs() throws SQLException, ClassNotFoundException {
+    private void searchOfertyUs() throws ClassNotFoundException {
         try {
             //Get all information
-            ObservableList<Oferty> oferty = OfertyUser.searchOfertyUs();
+            ObservableList<Oferty> oferty = FXCollections.observableArrayList((ArrayList<Oferty>) connectToSerwer("Uzytkownicy","Oferty",null));
             //Populate TableView
             populateOfertyUs(oferty);
-        } catch (SQLException e){
-            System.out.println("Error occurred while getting information from DB.\n" + e);
-            throw e;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -154,12 +156,11 @@ public class UserController {
     private void searchZamowienia() throws SQLException, ClassNotFoundException {
         try {
             //Get all information
-            ObservableList<Zamowienia> zam = ZamowieniaUser.searchZamowienia(Integer.valueOf(idUzytkownikaField.getText()));
+            ObservableList<Zamowienia> zam = FXCollections.observableArrayList((ArrayList<Zamowienia>) connectToSerwer("Zamowienia","Usera",Integer.valueOf(idUzytkownikaField.getText())));
             //Populate TableView
             populateZamowienia(zam);
-        } catch (SQLException e){
-            System.out.println("Error occurred while getting information from DB.\n" + e);
-            throw e;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -189,49 +190,62 @@ public class UserController {
     // Dodaje zamownienie i dekrementuje ilosc mniejsc w tab oferty dajen oferty
     //*************************************
     @FXML
-    private void addZamowienie () throws SQLException, ClassNotFoundException {
+    private void addZamowienie () throws  ClassNotFoundException {
         try {
-            OfertyUser.addZam(Integer.valueOf(idUzytkownikaField.getText()),Integer.valueOf(idOfertyField.getText()),String.valueOf(ubezpieczenieCB.getValue()));
+            Uzytkownicy uz = new Uzytkownicy();
+            Oferty ofe = new Oferty();
+
+            uz.setId_uzytkownika(Integer.valueOf(idUzytkownikaField.getText()));
+            uz.setId_wycieczki(Integer.valueOf(idOfertyField.getText()));
+            uz.setUbezpieczenie(String.valueOf(ubezpieczenieCB.getValue()));
+            connectToSerwer("Kup","Oferte",uz);
             System.out.println("Zamoienie zlozone! \n");
-            OfertyUser.decreaseIloscMiejsc(Integer.valueOf(miejscaField.getText()),Integer.valueOf(idOfertyField.getText()));
+
+            ofe.setIlosc_miejsc(Integer.valueOf(miejscaField.getText()));
+            ofe.setId_oferty(Integer.valueOf(idOfertyField.getText()));
+            connectToSerwer("Odejmij","Oferte",ofe);
             searchOfertyUs();
             searchZamowienia();
         } catch (SQLException e) {
             System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
-            throw e;
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     @FXML
-    private void editUserName () throws SQLException, ClassNotFoundException {
-        if(newNameEdit.getText().trim().equals("")) {
+    private void editUserName () throws ClassNotFoundException {
+        if(newNameEdit.getText().equals(null)) {
             statement.setText("NIE PODANO IMIENIA");
         }
         else {
             try {
-                EditUser.updateName(Integer.valueOf(idUzytkownikaField.getText()) ,newNameEdit.getText().trim());
+                Login lg = new Login();
+                lg.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
+                connectToSerwer("updateName",newNameEdit.getText().trim(),lg);
                 statement.setText("IMIE ZOSTAłO ZMIENIONE");
                 nameEdit.setText(newNameEdit.getText());
                 newNameEdit.setText(null);
-            } catch (SQLException e) {
-                System.out.println("Wystapił poblem przy aktualizacji imienia " + e);
-                throw e;
+            }  catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
     @FXML
-    private void editUserSurname () throws SQLException, ClassNotFoundException {
+    private void editUserSurname () throws ClassNotFoundException {
         if(newSurameEdit.getText().trim().equals("")) {
             statement.setText("NIE PODANO NAZWISKA");
         }
         else {
             try {
-                EditUser.updateSurname(Integer.valueOf(idUzytkownikaField.getText()) ,newSurameEdit.getText().trim());
+                Login lg = new Login();
+                lg.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
+                connectToSerwer("updateSurname",newSurameEdit.getText().trim(),lg);
                 statement.setText("NAZWISKO ZOSTAłO ZMIENIONE");
                 surnameEdit.setText(newSurameEdit.getText());
                 newSurameEdit.setText(null);
-            } catch (SQLException e) {
-                System.out.println("Wystapił poblem przy aktualizacji nazwiska " + e);
-                throw e;
+            }catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -241,20 +255,21 @@ public class UserController {
         if(checkLogin() == false){
         }
         else {
-            try {
-                EditUser.updateLogin(Integer.valueOf(idUzytkownikaField.getText()) ,newLoginEdit.getText());
-                statement.setText("LOGIN ZOSTAł ZMIENIONY");
-                loginEdit.setText(newLoginEdit.getText());
-                newLoginEdit.setText(null);
-            } catch (SQLException e) {
-                System.out.println("Wystapił poblem przy aktualizacji loginu " + e);
-                throw e;
-            }
+            Login lg = new Login();
+            lg.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
+            lg.setLogin(newLoginEdit.getText());
+            connectToSerwer("Update","Login",lg);
+            statement.setText("LOGIN ZOSTAł ZMIENIONY");
+            loginEdit.setText(newLoginEdit.getText());
+            newLoginEdit.setText(null);
         }
     }
     @FXML
-    private void editUserPassword () throws SQLException, ClassNotFoundException {
-        Login lg = checkUserPassword(Integer.valueOf(idUzytkownikaField.getText()),passwordEdit.getText());
+    private void editUserPassword () throws SQLException, ClassNotFoundException, IOException {
+        Login login = new Login();
+        login.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
+        login.setHaslo(passwordEdit.getText());
+        Login lg = (Login) connectToSerwer("Sprawdz","Haslo",login);
         if(lg == null) {
             statement.setText("PODANO BLEDNE HASLO!");
         }
@@ -268,38 +283,37 @@ public class UserController {
                 }
                 else {
                     try {
-                        EditUser.updatePassword(Integer.valueOf(idUzytkownikaField.getText()) ,newPassworEdit.getText());
+                        Login log = new Login();
+                        log.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
+                        log.setHaslo(newPassworEdit.getText());
+                        connectToSerwer("Update","Password",log);
                         statement.setText("HASLO ZOSTAłO ZMIENIONE");
                         passwordEdit.setText(newSurameEdit.getText());
                         newPassworEdit.setText(null);
                         newPassworRepeatEdit.setText(null);
-                    } catch (SQLException e) {
-                        System.out.println("Wystapił poblem przy aktualizacji hasla " + e);
-                        throw e;
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
             }
         }
     }
-    private boolean checkLogin() throws SQLException, ClassNotFoundException, IOException {
-        try {
-            //Get all information
-            Login lg = Registration.checkLogin(newLoginEdit.getText());
-            if(lg == null) {
-                if(newLoginEdit.getText().trim().equals("")) {
-                    statement.setText("NIE PODANO LOGINU ");
-                    return false;
-                }else{
-                    return true;
-                }
-            }
-            else {
-                statement.setText("LOGIN ZAJĘTY, WYBIERZ INNY");
+    private boolean checkLogin() throws ClassNotFoundException, IOException {
+        //Get all information
+        Login login = new Login();
+        login.setLogin(newLoginEdit.getText());
+        Login lg = (Login) connectToSerwer("Wolny","Login",login);
+        if(lg == null) {
+            if(newLoginEdit.getText().trim().equals("")) {
+                statement.setText("NIE PODANO LOGINU ");
                 return false;
+            }else{
+                return true;
             }
-        } catch (SQLException e){
-            System.out.println("Error occurred while getting information from DB.\n" + e);
-            throw e;
+        }
+        else {
+            statement.setText("LOGIN ZAJĘTY, WYBIERZ INNY");
+            return false;
         }
     }
     private boolean checkPassword() {

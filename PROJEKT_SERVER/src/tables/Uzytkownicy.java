@@ -5,15 +5,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
-
 /**
  * Created by Wojtek on 13.06.2017.
  */
-public class Uzytkownicy  implements Externalizable{
+public class Uzytkownicy {
     private IntegerProperty id_zamowienia;
     private IntegerProperty id_uzytkownika;
     private StringProperty imie;
@@ -114,27 +109,5 @@ public class Uzytkownicy  implements Externalizable{
 
     public void setNazwisko(String nazwisko) {
         this.nazwisko.set(nazwisko);
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeInt(getId_zamowienia());
-        out.writeInt(getId_uzytkownika());
-        out.writeObject(getImie());
-        out.writeObject(getNazwisko());
-        out.writeInt(getId_wycieczki());
-        out.writeObject(getWplata());
-        out.writeObject(getUbezpieczenie());
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        setId_zamowienia(in.readInt());
-        setId_uzytkownika(in.readInt());
-        setImie((String)in.readObject());
-        setNazwisko((String)in.readObject());
-        setId_wycieczki(in.readInt());
-        setWplata((String)in.readObject());
-        setUbezpieczenie((String)in.readObject());
     }
 }

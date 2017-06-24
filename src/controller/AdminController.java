@@ -9,10 +9,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import tables.Oferty;
 import tables.Uzytkownicy;
+
+import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
-import static dao.OfertyAdmin.toSqlDate;
+import static sample.ClientSocket.connectToSerwer;
 
 
 /**
@@ -114,15 +119,12 @@ public class AdminController {
     @FXML
     private void searchOferty() throws SQLException, ClassNotFoundException {
         try {
-            //Get all information
-            ObservableList<Oferty> oferty = OfertyAdmin.searchOferty();
+            ObservableList<Oferty> oferty = FXCollections.observableArrayList((ArrayList<Oferty>) connectToSerwer("Oferty","Admin",null));
             //Populate TableView
             populateOferty(oferty);
-        } catch (SQLException e){
-            System.out.println("Error occurred while getting information from DB.\n" + e);
-            throw e;
+        }  catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
 
     //*************************************
@@ -137,15 +139,14 @@ public class AdminController {
     //Wyszukuje wszytkich uz i dodaje do tabview
     //*************************************
     @FXML
-    private void searchUzytkownicy() throws SQLException, ClassNotFoundException {
+    private void searchUzytkownicy() throws ClassNotFoundException {
         try {
             //Get all information
-            ObservableList<Uzytkownicy> uz = UzytkownicyAdmin.searchUzytkownicy();
+            ObservableList<Uzytkownicy> uz = FXCollections.observableArrayList((ArrayList<Uzytkownicy>) connectToSerwer("Uzytkownicy","Admin",null));
             //Populate TableView
             populateUzytkownicy(uz);
-        } catch (SQLException e){
-            System.out.println("Error occurred while getting information from DB.\n" + e);
-            throw e;
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -163,12 +164,20 @@ public class AdminController {
     @FXML
     private void insertOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
-            OfertyAdmin.insertoferta(opisField.getText(),Double.valueOf(cenaField.getText()),toSqlDate(dataPoczField.getText()),toSqlDate(dataKoncField.getText()),Integer.valueOf(iloscField.getText()));
+            Oferty ofe = new Oferty();
+            ofe.setOpis(opisField.getText());
+            ofe.setCena(Double.valueOf(cenaField.getText()));
+            ofe.setData_pocz(toSqlDate(dataPoczField.getText()));
+            ofe.setData_konc(toSqlDate(dataKoncField.getText()));
+            ofe.setIlosc_miejsc(Integer.valueOf(iloscField.getText()));
+            connectToSerwer("Oferty","Dodaj",ofe);
             System.out.println("Oferta dodana! \n");
             searchOferty();
         } catch (SQLException e) {
             System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
             throw e;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     //*************************************
@@ -177,26 +186,36 @@ public class AdminController {
     @FXML
     private void updateOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
-            OfertyAdmin.updateOferta(Integer.valueOf(idOfertyEdit.getText()),opisFieldEdit.getText(),Double.valueOf(cenaFieldEdit.getText()),toSqlDate(dataPoczFieldEdit.getText()),toSqlDate(dataKoncFieldEdit.getText()));
-            System.out.println("Oferta dodana! \n");
+            Oferty ofe = new Oferty();
+            ofe.setId_oferty(Integer.valueOf(idOfertyEdit.getText()));
+            ofe.setOpis(opisFieldEdit.getText());
+            ofe.setCena(Double.valueOf(cenaFieldEdit.getText()));
+            ofe.setData_pocz(toSqlDate(dataPoczFieldEdit.getText()));
+            ofe.setData_konc(toSqlDate(dataKoncFieldEdit.getText()));
+            connectToSerwer("Oferty","Edytuj",ofe);
+            System.out.println("Oferta zmodyfikowa! \n");
             searchOferty();
         } catch (SQLException e) {
             System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
             throw e;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     //*************************************
     // Aktualicuje wplate
     //*************************************
     @FXML
-    private void updateWpl (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void updateWpl (ActionEvent actionEvent) throws ClassNotFoundException {
         try {
-            UzytkownicyAdmin.updateWplata(Integer.valueOf(idZamowieniaEdit.getText()),String.valueOf(wplata.getValue()));
+            Uzytkownicy uz = new Uzytkownicy();
+            uz.setId_zamowienia(Integer.valueOf(idZamowieniaEdit.getText()));
+            uz.setWplata(String.valueOf(wplata.getValue()));
+            connectToSerwer("Admin","Wpłata",uz);
             System.out.println("ZMIENONO POLE WPLATA! \n");
             searchUzytkownicy();
-        } catch (SQLException e) {
-            System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
-            throw e;
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
     //*************************************
@@ -227,5 +246,24 @@ public class AdminController {
                 idZamowieniaEdit.setText(String.valueOf(newValue.getId_zamowienia()));
                 wplata.setValue(newValue.getWplata());
         });
+    }
+    // zamiana stringa na date
+    public static Date toSqlDate(String strDate)
+    {
+        DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date myDate;
+        java.sql.Date sqlDate;
+
+        try
+        {
+            myDate = dateFrm.parse(strDate);
+            sqlDate = new java.sql.Date(myDate.getTime());
+        }
+        catch (Exception e)
+        {
+            sqlDate = null;
+        }
+
+        return (sqlDate);
     }
 }

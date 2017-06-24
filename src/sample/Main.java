@@ -10,7 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import oracle.ConnectToDatabase;
+
 
 
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
         primaryStage.setResizable(false);
-        ConnectToDatabase.connect();
+
 
     }
 

@@ -15,6 +15,8 @@ import tables.Login;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static sample.ClientSocket.connectToSerwer;
+
 /**
  * Created by Wojtek on 15.06.2017.
  */
@@ -35,9 +37,11 @@ public class LoginController {
     //*************************************
     @FXML
     private void checkLog(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
-        try {
-            //Get all information
-            Login lg = LoginDAO.checkLoginAndPassword(login.getText(),password.getText());
+            Login log = new Login();
+            log.setLogin(login.getText());
+            log.setHaslo(password.getText());
+            Login lg = (Login) connectToSerwer("Login", "Sprawdz",log);
+//        System.out.println(lg.getId_uz());
             if(lg == null) {
                 statement.setText("Błędne haslo lub login");
             }
@@ -53,12 +57,7 @@ public class LoginController {
                     loadUserInterface(event);
                 }
             }
-        } catch (SQLException e){
-            System.out.println("Error occurred while getting information from DB.\n" + e);
-            throw e;
         }
-
-    }
     //*************************************
     // wyświetla interface usera
     //*************************************

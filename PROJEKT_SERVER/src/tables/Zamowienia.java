@@ -3,16 +3,10 @@ package tables;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
-import java.util.concurrent.ExecutorService;
-
 /**
  * Created by Wojtek on 13.06.2017.
  */
-public class Zamowienia implements Externalizable{
+public class Zamowienia {
     private StringProperty opis_zam;
     private StringProperty wplata;
     private StringProperty ubezpieczenie;
@@ -57,19 +51,5 @@ public class Zamowienia implements Externalizable{
 
     public void setUbezpieczenie(String ubezpieczenie) {
         this.ubezpieczenie.set(ubezpieczenie);
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(getOpis_zam());
-        out.writeObject(getWplata());
-        out.writeObject(getUbezpieczenie());
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        setOpis_zam((String)in.readObject());
-        setWplata((String)in.readObject());
-        setUbezpieczenie((String)in.readObject());
     }
 }

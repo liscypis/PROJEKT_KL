@@ -1,6 +1,5 @@
 package controller;
 
-import dao.Registration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,6 +8,8 @@ import tables.Login;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+import static sample.ClientSocket.connectToSerwer;
 
 /**
  * Created by Wojtek on 16.06.2017.
@@ -44,25 +45,20 @@ public class RegistrationController {
     //*************************************
     @FXML
     private boolean checkFreeLogin() throws SQLException, ClassNotFoundException, IOException {
-        try {
-            //Get all information
-            Login lg = Registration.checkLogin(loginField.getText());
-            if(lg == null) {
-                if(loginField.getText().trim().equals("")) {
-                    loginStatement.setText("NIE PODANO LOGINU ");
-                    return false;
-                }else{
-                    loginStatement.setText("Wolny");
-                    return true;
-                }
-            }
-            else {
-                loginStatement.setText("LOGIN ZAJĘTY, WYBIERZ INNY");
+        //Get all information
+        Login lg = (Login) connectToSerwer("Wolny","Login",loginField.getText());
+        if(lg == null) {
+            if(loginField.getText().trim().equals("")) {
+                loginStatement.setText("NIE PODANO LOGINU ");
                 return false;
+            }else{
+                loginStatement.setText("Wolny");
+                return true;
             }
-        } catch (SQLException e){
-            System.out.println("Error occurred while getting information from DB.\n" + e);
-            throw e;
+        }
+        else {
+            loginStatement.setText("LOGIN ZAJĘTY, WYBIERZ INNY");
+            return false;
         }
     }
     //*************************************
@@ -96,7 +92,7 @@ public class RegistrationController {
     // dodaje nowego uzytkownika
     //*************************************
     @FXML
-    private void addNewUser () throws SQLException, ClassNotFoundException, IOException {
+    private void addNewUser () throws ClassNotFoundException, IOException, SQLException {
         if(checkFields() == false)
         {
             infoStatement.setText("UZUPEŁNIJ WSZYTKIE POLA");
@@ -111,15 +107,13 @@ public class RegistrationController {
 
                 }
                 else{
-                    try {
-                        Registration.addUser(nameField.getText(),surnameField.getText(),loginField.getText(),passwordField.getText().trim());
-                        infoStatement.setText("REJESTRACJA UDANA");
-                        add.setDisable(true);
-                        logIn.setVisible(true);
-                    } catch (SQLException e) {
-                        System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
-                        throw e;
-                    }
+                    Login lg = new Login();
+                    lg.setLogin(loginField.getText());
+                    lg.setHaslo(passwordField.getText().trim());
+                    connectToSerwer(nameField.getText(),surnameField.getText(),lg);
+                    infoStatement.setText("REJESTRACJA UDANA");
+                    add.setDisable(true);
+                    logIn.setVisible(true);
                 }
             }
         }

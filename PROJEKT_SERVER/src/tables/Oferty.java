@@ -2,16 +2,12 @@ package tables;
 
 import javafx.beans.property.*;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.util.Date;
 
 /**
  * Created by Wojtek on 09.06.2017.
  */
-public class Oferty implements Externalizable {
+public class Oferty {
     private IntegerProperty id_oferty;
     private StringProperty opis;
     private DoubleProperty cena;
@@ -96,25 +92,5 @@ public class Oferty implements Externalizable {
 
     public void setIlosc_miejsc(int ilosc_miejsc) {
         this.ilosc_miejsc.set(ilosc_miejsc);
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeInt(getId_oferty());
-        out.writeObject(getOpis());
-        out.writeObject(getData_pocz());
-        out.writeObject(getData_konc());
-        out.writeInt(getIlosc_miejsc());
-        out.writeDouble(getCena());
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        setId_oferty(in.readInt());
-        setOpis((String)in.readObject());
-        setData_pocz((Date) in.readObject());
-        setData_konc((Date)in.readObject());
-        setIlosc_miejsc(in.readInt());
-        setCena(in.readDouble());
     }
 }

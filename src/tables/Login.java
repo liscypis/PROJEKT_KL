@@ -5,19 +5,42 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.io.*;
+
 /**
  * Created by Wojtek on 15.06.2017.
  */
-public class Login {
-    private IntegerProperty id_uz;
-    private StringProperty login;
-    private StringProperty haslo;
+public class Login implements Serializable{
+    private Integer id_uz;
+    private String login;
+    private String haslo;
     private static Integer id;
 
     public Login(){
-        this.id_uz = new SimpleIntegerProperty();
-        this.login = new SimpleStringProperty();
-        this.haslo = new SimpleStringProperty();
+    }
+
+    public Integer getId_uz() {
+        return id_uz;
+    }
+
+    public void setId_uz(Integer id_uz) {
+        this.id_uz = id_uz;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getHaslo() {
+        return haslo;
+    }
+
+    public void setHaslo(String haslo) {
+        this.haslo = haslo;
     }
 
     public static Integer getId() {
@@ -28,39 +51,4 @@ public class Login {
         Login.id = id;
     }
 
-    public int getId_uz() {
-        return id_uz.get();
-    }
-
-    public IntegerProperty id_uzProperty() {
-        return id_uz;
-    }
-
-    public void setId_uz(int id_uz) {
-        this.id_uz.set(id_uz);
-    }
-
-    public String getLogin() {
-        return login.get();
-    }
-
-    public StringProperty loginProperty() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login.set(login);
-    }
-
-    public String getHaslo() {
-        return haslo.get();
-    }
-
-    public StringProperty hasloProperty() {
-        return haslo;
-    }
-
-    public void setHaslo(String haslo) {
-        this.haslo.set(haslo);
-    }
 }
