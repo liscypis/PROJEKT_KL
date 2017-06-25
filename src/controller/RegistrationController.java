@@ -45,7 +45,6 @@ public class RegistrationController {
     //*************************************
     @FXML
     private boolean checkFreeLogin() throws SQLException, ClassNotFoundException, IOException {
-        //Get all information
         Login lg = (Login) connectToSerwer("Wolny","Login",loginField.getText());
         if(lg == null) {
             return true;
@@ -112,5 +111,4 @@ public class RegistrationController {
             }
         }
     }
-
 }

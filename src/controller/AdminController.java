@@ -2,7 +2,6 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import tables.Oferty;
@@ -124,7 +123,6 @@ public class AdminController {
     private void searchOferty() throws SQLException, ClassNotFoundException {
         try {
             ObservableList<Oferty> oferty = FXCollections.observableArrayList((ArrayList<Oferty>) connectToSerwer("Oferty","Admin",null));
-            //Populate TableView
             populateOferty(oferty);
         }  catch (IOException e) {
             e.printStackTrace();
@@ -136,7 +134,6 @@ public class AdminController {
     //*************************************
     @FXML
     private void populateOferty (ObservableList<Oferty> oferty)  {
-        //Set items to the employeeTable
         oferty_admin.itemsProperty().setValue(oferty);
     }
     //*************************************
@@ -145,9 +142,7 @@ public class AdminController {
     @FXML
     private void searchUzytkownicy() throws ClassNotFoundException {
         try {
-            //Get all information
             ObservableList<Uzytkownicy> uz = FXCollections.observableArrayList((ArrayList<Uzytkownicy>) connectToSerwer("Uzytkownicy","Admin",null));
-            //Populate TableView
             populateUzytkownicy(uz);
         }catch (IOException e) {
             e.printStackTrace();
@@ -159,14 +154,13 @@ public class AdminController {
     //*************************************
     @FXML
     private void populateUzytkownicy (ObservableList<Uzytkownicy> uz) throws ClassNotFoundException {
-        //Set items to the employeeTable
         uzytkownicy_admin.setItems(uz);
     }
     //*************************************
     //Dodaje oferte
     //*************************************
     @FXML
-    private void insertOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void insertOfe () throws SQLException, ClassNotFoundException {
         try {
             if(opisField.getText() == null || opisField.getText().trim().isEmpty() || cenaField.getText() == null || cenaField.getText().trim().isEmpty()
                     || dataPoczField.getText() == null || dataPoczField.getText().trim().isEmpty() || dataKoncField.getText() == null ||
@@ -196,7 +190,7 @@ public class AdminController {
     // Aktualizuje oferte
     //*************************************
     @FXML
-    private void updateOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+    private void updateOfe () throws SQLException, ClassNotFoundException {
         try {
             Oferty ofe = new Oferty();
             ofe.setId_oferty(Integer.valueOf(idOfertyEdit.getText()));
@@ -218,7 +212,7 @@ public class AdminController {
     // Aktualicuje wplate
     //*************************************
     @FXML
-    private void updateWpl (ActionEvent actionEvent) throws ClassNotFoundException {
+    private void updateWpl () throws ClassNotFoundException {
         try {
             Uzytkownicy uz = new Uzytkownicy();
             uz.setId_zamowienia(Integer.valueOf(idZamowieniaEdit.getText()));
@@ -267,7 +261,6 @@ public class AdminController {
         DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date myDate;
         java.sql.Date sqlDate;
-
         try
         {
             myDate = dateFrm.parse(strDate);
@@ -277,7 +270,6 @@ public class AdminController {
         {
             sqlDate = null;
         }
-
         return (sqlDate);
     }
 }

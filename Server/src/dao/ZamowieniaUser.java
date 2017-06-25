@@ -14,24 +14,16 @@ import java.util.ArrayList;
 public class ZamowieniaUser {
     //SELECT * ZAMOWIENIA user
     public static ArrayList<Zamowienia> searchZamowienia (int id_usera) throws SQLException, ClassNotFoundException {
-        //Declare a SELECT statement
         String selectStmt = "SELECT oferty.opis,ubezpieczenie,wplata FROM zamowienia, oferty where zamowienia.id_oferty = oferty.id_oferty AND zamowienia.id_uzytkownika="+id_usera+"";
-
-        //Execute SELECT statement
+        ArrayList<Zamowienia> zamowieniaList = null;
         try {
-            //Get ResultSet from executeSelect method
             ResultSet resultZamowienia = ConnectToDatabase.executeSelect(selectStmt);
-
-            //Send ResultSet to the getEmployeeFromResultSet method and get employee object
-            ArrayList<Zamowienia> zamowieniaList = getZamowieniaList(resultZamowienia);
-
-            //Return oferty object
-            return zamowieniaList;
+            zamowieniaList = getZamowieniaList(resultZamowienia);
         } catch (SQLException e) {
-            System.out.println("ERROR !!!! " + e);
-            //Return exception
+            e.printStackTrace();
             throw e;
         }
+        return zamowieniaList;
     }
 
     // dodawanie ofert do listy

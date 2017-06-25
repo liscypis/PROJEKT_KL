@@ -40,7 +40,6 @@ public class LoginController {
             log.setLogin(login.getText());
             log.setHaslo(password.getText());
             Login lg = (Login) connectToSerwer("Login", "Sprawdz",log);
-//        System.out.println(lg.getId_uz());
             if(lg == null) {
                 statement.setText("Błędne haslo lub login");
             }
@@ -95,6 +94,4 @@ public class LoginController {
         stage.show();
         stage.setResizable(false);
     }
-
-
 }

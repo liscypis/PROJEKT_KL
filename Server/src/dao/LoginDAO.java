@@ -14,21 +14,12 @@ public class LoginDAO {
     // pobiera id_uz o podanym log i pass
     //*************************************
     public static Login checkLoginAndPassword (Login lg) throws SQLException, ClassNotFoundException {
-        //Declare a SELECT statement
         String selectStmt = "SELECT id_uzytkownika  FROM uzytkownicy WHERE login= '"+lg.getLogin()+"' AND haslo= '"+lg.getHaslo()+"'";
-
-        //Execute SELECT statement
         try {
-            //Get ResultSet from executeSelect method
             ResultSet resultLog = ConnectToDatabase.executeSelect(selectStmt);
-
-            //Send ResultSet to the getEmployeeFromResultSet method and get employee object
             lg = getIdFromLogin(resultLog);
-
-            //Return oferty object
-            return lg;
         } catch (SQLException e) {
-            System.out.println(" an error occurred: " + e);
+            e.printStackTrace();
         }
         return lg;
     }

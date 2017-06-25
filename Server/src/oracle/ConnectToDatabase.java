@@ -15,11 +15,10 @@ public class ConnectToDatabase {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Where is your Oracle JDBC Driver?");
+            System.out.println("Nie znaleziono sterownika Oracle JDBC");
             e.printStackTrace();
             return;
         }
-        System.out.println("Oracle JDBC Driver Registered!");
         try {
             connection = DriverManager.getConnection(
                     "jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
@@ -29,9 +28,9 @@ public class ConnectToDatabase {
             return;
         }
         if (connection != null) {
-            System.out.println("You made it, take control your database now!");
+            System.out.println("Udało się nawiązać połączenie z bazą");
         } else {
-            System.out.println("Failed to make connection!");
+            System.out.println("Nie udało się połączyć");
         }
     }
 
@@ -47,66 +46,44 @@ public class ConnectToDatabase {
     }
     // Execute select
     public static ResultSet executeSelect(String queryStmt) throws SQLException, ClassNotFoundException {
-        //Declare statement, resultSet and CachedResultSet as null
         Statement stmt = null;
         ResultSet resultSet = null;
-        CachedRowSetImpl crs;
+        CachedRowSetImpl crs = null;
         try {
-            //Connect to DB (Establish Oracle Connection)
             connect();
-            System.out.println("Select statement: " + queryStmt + "\n");
-
-            //Create statement
+            System.out.println("Select : " + queryStmt + "\n");
             stmt = connection.createStatement();
-
-            //Execute select (query) operation
             resultSet = stmt.executeQuery(queryStmt);
-
-            //CachedRowSet Implementation
-            //In order to prevent "java.sql.SQLRecoverableException: Closed Connection: next" error
-            //We are using CachedRowSet
             crs = new CachedRowSetImpl();
             crs.populate(resultSet);
         } catch (SQLException e) {
-            System.out.println("Problem occurred at executeQuery operation : " + e);
-            throw e;
+            e.printStackTrace();
         } finally {
             if (resultSet != null) {
-                //Close resultSet
                 resultSet.close();
             }
             if (stmt != null) {
-                //Close Statement
                 stmt.close();
             }
-            //Close connection
             disconnect();
         }
-        //Return CachedRowSet
         return crs;
     }
 
     // Update/delete/insert
     public static void executeUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
-        //Declare statement as null
         Statement stmt = null;
         try {
-            //Connect to DB
             connect();
-            System.out.println(sqlStmt);
-            //Create Statement
+            System.out.println("Update/delete/insert " +sqlStmt);
             stmt = connection.createStatement();
-            //Run executeUpdate operation with given sql statement
             stmt.executeUpdate(sqlStmt);
         } catch (SQLException e) {
-            System.out.println("Problem occurred at executeUpdate operation : " + e);
-            throw e;
+            e.printStackTrace();
         } finally {
             if (stmt != null) {
-                //Close statement
                 stmt.close();
             }
-            //Close connection
             disconnect();
         }
     }

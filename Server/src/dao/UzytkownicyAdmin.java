@@ -18,23 +18,15 @@ public class UzytkownicyAdmin {
     //SELECT  FROM Uzytkowncy
     //*************************************
     public static ArrayList<Uzytkownicy> searchUzytkownicy () throws SQLException, ClassNotFoundException {
-        //Declare a SELECT statement
         String selectStmt = "SELECT zamowienia.id_zamowienia, oferty.id_oferty, uzytkownicy.id_uzytkownika, imie, nazwisko, wplata, ubezpieczenie FROM oferty, uzytkownicy, zamowienia where zamowienia.id_uzytkownika = uzytkownicy.id_uzytkownika and zamowienia.id_oferty = oferty.id_oferty";
-        //Execute SELECT statement
+        ArrayList<Uzytkownicy> uzytkownicyList = null;
         try {
-            //Get ResultSet from executeSelect method
             ResultSet resultUzytkownicy = ConnectToDatabase.executeSelect(selectStmt);
-
-            //Send ResultSet to the getEmployeeFromResultSet method and get employee object
-            ArrayList<Uzytkownicy> uzytkownicyList = getUzywkownicyList(resultUzytkownicy);
-
-            //Return oferty object
-            return uzytkownicyList;
+            uzytkownicyList = getUzywkownicyList(resultUzytkownicy);
         } catch (SQLException e) {
-            System.out.println("ERROR !!!! " + e);
-            //Return exception
-            throw e;
+            e.printStackTrace();
         }
+        return uzytkownicyList;
     }
 
     //*************************************
@@ -61,14 +53,11 @@ public class UzytkownicyAdmin {
     //UPDATE wpłata
     //*************************************
     public static void updateWplata (Uzytkownicy uz) throws SQLException, ClassNotFoundException {
-        //Declare a insert statement
         String updateStmt = "UPDATE ZAMOWIENIA SET WPLATA='"+uz.getWplata()+"' WHERE ID_ZAMOWIENIA= "+uz.getId_zamowienia()+"";
-        //Execute insert
         try {
             ConnectToDatabase.executeUpdate(updateStmt);
         } catch (SQLException e) {
-            System.out.print("Error occurred while insert Operation: " + e);
-            throw e;
+            e.printStackTrace();
         }
     }
 }

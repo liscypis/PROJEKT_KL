@@ -10,7 +10,6 @@ import tables.Oferty;
 import tables.Uzytkownicy;
 import tables.Zamowienia;
 
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -128,9 +127,7 @@ public class UserController {
     @FXML
     private void searchOfertyUs() throws ClassNotFoundException {
         try {
-            //Get all information
             ObservableList<Oferty> oferty = FXCollections.observableArrayList((ArrayList<Oferty>) connectToSerwer("Uzytkownicy","Oferty",null));
-            //Populate TableView
             populateOfertyUs(oferty);
         } catch (IOException e) {
             e.printStackTrace();
@@ -142,7 +139,6 @@ public class UserController {
     //*************************************
     @FXML
     private void populateOfertyUs (ObservableList<Oferty> oferty)  {
-        //Set items to the oferty_user
         oferty_user.setItems(oferty);
     }
 
@@ -152,9 +148,7 @@ public class UserController {
     @FXML
     private void searchZamowienia() throws SQLException, ClassNotFoundException {
         try {
-            //Get all information
             ObservableList<Zamowienia> zam = FXCollections.observableArrayList((ArrayList<Zamowienia>) connectToSerwer("Zamowienia","Usera",Integer.valueOf(idUzytkownikaField.getText())));
-            //Populate TableView
             populateZamowienia(zam);
         } catch (IOException e) {
             e.printStackTrace();
@@ -166,7 +160,6 @@ public class UserController {
     //*************************************
     @FXML
     private void populateZamowienia (ObservableList<Zamowienia> zam)  {
-        //Set items to the oferty_user
         zamowienia_user.setItems(zam);
     }
     //*************************************
@@ -220,7 +213,6 @@ public class UserController {
                 Oferty of = new Oferty();
                 of.setOpis(szukajOferty.getText());
                 ObservableList<Oferty> ofe = FXCollections.observableArrayList((ArrayList<Oferty>) connectToSerwer("Szukaj","Ofert",of));
-                //Populate TableView
                 populateFindOferty(ofe);
             }
         } catch (IOException e) {
@@ -233,7 +225,6 @@ public class UserController {
     //*************************************
     @FXML
     private void populateFindOferty (ObservableList<Oferty> ofe)  {
-        //Set items to the oferty_user
         oferty_user.setItems(ofe);
     }
     @FXML
@@ -245,7 +236,7 @@ public class UserController {
             nameEdit.setText(newNameEdit.getText());
             newNameEdit.setText(null);
             statement.setText("IMIE ZOSTAłO ZMIENIONE");
-        }  catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -325,7 +316,6 @@ public class UserController {
         }
     }
     private boolean checkLogin() throws ClassNotFoundException, IOException, InterruptedException {
-        //Get all information
         Login lg = (Login) connectToSerwer("Wolny","Login",newLoginEdit.getText());
         if(lg == null) {
             return true;
@@ -335,11 +325,11 @@ public class UserController {
             return false;
         }
     }
+
     private boolean checkPassword() {
         if(newPassworEdit.getText().trim().equals(newPassworRepeatEdit.getText().trim())){
             return true;
         }
         else return false;
     }
-
 }

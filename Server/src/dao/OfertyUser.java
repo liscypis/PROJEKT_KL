@@ -19,22 +19,15 @@ public class OfertyUser {
     //*************************************
     public static ArrayList<Oferty> searchOfertyUs () throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM oferty WHERE ILOSC_MIEJSC !=0 ";
-
-        //Execute SELECT statement
+        ArrayList<Oferty> ofertyList = null;
         try {
-            //Get ResultSet from executeSelect method
             ResultSet resultOferty = ConnectToDatabase.executeSelect(selectStmt);
+            ofertyList = getOfertyListUs(resultOferty);
 
-            //Send ResultSet to the getEmployeeFromResultSet method and get employee object
-            ArrayList<Oferty> ofertyList = getOfertyListUs(resultOferty);
-
-            //Return oferty object
-            return ofertyList;
         } catch (SQLException e) {
-            System.out.println("ERROR !!!! " + e);
-            //Return exception
-            throw e;
+            e.printStackTrace();
         }
+        return ofertyList;
     }
 
     //*************************************
@@ -60,24 +53,15 @@ public class OfertyUser {
     // Szuka loginu
     //*************************************
     public static Login checkLogintoLabel (Integer id) throws SQLException, ClassNotFoundException {
-        //Declare a SELECT statement
         String selectStmt = "SELECT login FROM uzytkownicy WHERE id_uzytkownika="+id+"";
-
-        //Execute SELECT statement
+        Login lg = null;
         try {
-            //Get ResultSet from executeSelect method
             ResultSet resultLog = ConnectToDatabase.executeSelect(selectStmt);
-
-            //Send ResultSet to the getEmployeeFromResultSet method and get employee object
-            Login lg = getLogin(resultLog);
-
-            //Return oferty object
-            return lg;
+            lg = getLogin(resultLog);
         } catch (SQLException e) {
-            System.out.println(" an error occurred: " + e);
-            //Return exception
-            throw e;
+            e.printStackTrace();
         }
+        return lg;
     }
     //*************************************
     // zapisuje znaleziony login
@@ -95,41 +79,31 @@ public class OfertyUser {
     // dodaje zamownienie
     //*************************************
     public static void addZam (Uzytkownicy uz) throws SQLException, ClassNotFoundException {
-        //Declare a insert statement
         String updateStmt = "insert into ZAMOWIENIA values(zamowienia_seq.nextval,"+uz.getId_uzytkownika()+","+uz.getId_wycieczki()+",'"+uz.getUbezpieczenie()+"','Nie')";
-        //Execute insert
         try {
             ConnectToDatabase.executeUpdate(updateStmt);
         } catch (SQLException e) {
-            System.out.print("Error occurred while insert Operation: " + e);
-            throw e;
+           e.printStackTrace();
         }
     }
     // pomniejsza ilosc miejsc przy skladaniu zamowienia
     public static void decreaseIloscMiejsc (Oferty ofe) throws SQLException, ClassNotFoundException {
         ofe.setIlosc_miejsc(ofe.getIlosc_miejsc()-1);
         String updateStmt = "UPDATE oferty SET ILOSC_MIEJSC="+ofe.getIlosc_miejsc()+" WHERE id_oferty= "+ofe.getId_oferty()+"";
-        //Execute insert
         try {
             ConnectToDatabase.executeUpdate(updateStmt);
         } catch (SQLException e) {
-            System.out.print("Error occurred while insert Operation: " + e);
-            throw e;
+            e.printStackTrace();
         }
     }
 
     public static ArrayList<Oferty> szukajOferty(Oferty ofe) {
         //Declare a SELECT statement
         String selectStmt = "SELECT * FROM oferty WHERE OPIS LIKE  '%"+ofe.getOpis()+"%' ";
-        ArrayList<Oferty> ofertyList =null;
-        //Execute SELECT statement
+        ArrayList<Oferty> ofertyList = null;
         try {
-            //Get ResultSet from executeSelect method
             ResultSet resultOferty = ConnectToDatabase.executeSelect(selectStmt);
-
-            //Send ResultSet to the getEmployeeFromResultSet method and get employee object
             ofertyList = getszukajOferty(resultOferty);
-
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

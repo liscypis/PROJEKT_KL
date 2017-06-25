@@ -1,5 +1,4 @@
 import dao.*;
-import javafx.collections.ObservableList;
 import tables.Login;
 import tables.Oferty;
 import tables.Uzytkownicy;
@@ -9,7 +8,6 @@ import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import static dao.OfertyAdmin.searchOferty;
 import static dao.OfertyUser.searchOfertyUs;
@@ -38,12 +36,12 @@ public class RequestHandler implements Runnable {
                 System.out.println("Otrzymano wiadomosc od " + Thread.currentThread().getName() +" : " + userInput);
                 System.out.println("Otrzymano wiadomosc od " + Thread.currentThread().getName() +" : " + userInput2);
 
-                if(userInput.equals("Oferty")   && userInput2.equals("Admin")) {
+                if(userInput.equals("Oferty") && userInput2.equals("Admin")) {
                     ArrayList<Oferty> of = searchOferty();
                     out.writeObject(of);
                     out.flush();
                     System.out.println(of);
-                }else if(userInput.equals("Szukaj")   && userInput2.equals("Ofert")) {
+                }else if(userInput.equals("Szukaj") && userInput2.equals("Ofert")) {
                     ArrayList<Oferty> of = szukajOferty((Oferty)userInput3);
                     out.writeObject(of);
                     out.flush();
@@ -60,22 +58,22 @@ public class RequestHandler implements Runnable {
                     out.flush();
                     System.out.println(of);
                 }
-                else if (userInput.equals("Oferty")   && userInput2.equals("Dodaj")){
+                else if (userInput.equals("Oferty") && userInput2.equals("Dodaj")){
                     OfertyAdmin.insertoferta((Oferty) userInput3);
 
                 }
-                else if (userInput.equals("Oferty")   && userInput2.equals("Edytuj")){
+                else if (userInput.equals("Oferty") && userInput2.equals("Edytuj")){
                     OfertyAdmin.updateOferta((Oferty) userInput3);
 
                 }
-                else if (userInput.equals("Admin")   && userInput2.equals("Wpłata")){
+                else if (userInput.equals("Admin") && userInput2.equals("Wpłata")){
                     UzytkownicyAdmin.updateWplata((Uzytkownicy) userInput3);
 
                 }
-                else if (userInput.equals("Kup")   && userInput2.equals("Oferte")){
+                else if (userInput.equals("Kup") && userInput2.equals("Oferte")){
                     OfertyUser.addZam((Uzytkownicy) userInput3);
 
-                } else if (userInput.equals("Odejmij")   && userInput2.equals("Oferte")){
+                } else if (userInput.equals("Odejmij") && userInput2.equals("Oferte")){
                     OfertyUser.decreaseIloscMiejsc((Oferty) userInput3);
 
                 }
@@ -84,33 +82,33 @@ public class RequestHandler implements Runnable {
                     out.writeObject(of);
                     out.flush();
                     System.out.println(of);
-                }else if(userInput.equals("Uzytkownik")   && userInput2.equals("SprLogin")) {
+                }else if(userInput.equals("Uzytkownik") && userInput2.equals("SprLogin")) {
                     Login lg = OfertyUser.checkLogintoLabel((Integer) userInput3);
                     out.writeObject(lg);
                     out.flush();
                     System.out.println(lg);
                 }
-                else if(userInput.equals("Login")   && userInput2.equals("Sprawdz")) {
+                else if(userInput.equals("Login") && userInput2.equals("Sprawdz")) {
                     Login lg =LoginDAO.checkLoginAndPassword((Login) userInput3);
                     out.writeObject(lg);
                     out.flush();
                     System.out.println(lg);
-                }else if(userInput.equals("Wolny")   && userInput2.equals("Login")) {
+                }else if(userInput.equals("Wolny") && userInput2.equals("Login")) {
                     Login lg = Registration.checkLogin((String) userInput3);
                     out.writeObject(lg);
                     out.flush();
                     System.out.println(lg);
                 }
-                else if(userInput.equals("Pobierz")   && userInput2.equals("ImieNazwisko")) {
+                else if(userInput.equals("Pobierz") && userInput2.equals("ImieNazwisko")) {
                     Uzytkownicy uz = EditUser.getImieAndNazwisko((Uzytkownicy) userInput3);
                     out.writeObject(uz);
                     out.flush();
                     System.out.println(uz);
                 }
-                else if(userInput.equals("Update")   && userInput2.equals("Login")) {
+                else if(userInput.equals("Update") && userInput2.equals("Login")) {
                     EditUser.updateLogin((Login) userInput3);
                 }
-                else if(userInput.equals("Update")   && userInput2.equals("Password")) {
+                else if(userInput.equals("Update") && userInput2.equals("Password")) {
                     EditUser.updatePassword((Login) userInput3);
                 }
                 else if(userInput.equals("updateName")) {
@@ -122,7 +120,6 @@ public class RequestHandler implements Runnable {
                 else {
                     Registration.addUser(userInput,userInput2,(Login) userInput3);
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }catch (ClassNotFoundException e) {

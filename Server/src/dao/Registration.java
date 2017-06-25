@@ -11,24 +11,15 @@ import java.sql.SQLException;
  */
 public class Registration {
     public static Login checkLogin (String  login) throws SQLException, ClassNotFoundException {
-        //Declare a SELECT statement
         String selectStmt = "SELECT login  FROM uzytkownicy WHERE login= '"+login+"'";
-
-        //Execute SELECT statement
+        Login lg = null;
         try {
-            //Get ResultSet from executeSelect method
             ResultSet resultLog = ConnectToDatabase.executeSelect(selectStmt);
-
-            //Send ResultSet to the getEmployeeFromResultSet method and get employee object
-            Login lg = getLogin(resultLog);
-
-            //Return oferty object
-            return lg;
+            lg = getLogin(resultLog);
         } catch (SQLException e) {
-            System.out.println(" an error occurred: " + e);
-            //Return exception
-            throw e;
+           e.printStackTrace();
         }
+        return lg;
     }
 
     private static Login getLogin(ResultSet rs) throws SQLException
@@ -45,14 +36,11 @@ public class Registration {
     //INSERT uzytkownik
     //*************************************
     public static void addUser (String imie, String nazwisko, Login lg) throws SQLException, ClassNotFoundException {
-        //Declare a insert statement
         String updateStmt = "insert into uzytkownicy values(uzytkownicy_seq.nextval,'"+imie+"','"+nazwisko+"','"+lg.getLogin()+"','"+lg.getHaslo()+"')";
-        //Execute insert
         try {
             ConnectToDatabase.executeUpdate(updateStmt);
         } catch (SQLException e) {
-            System.out.print("Error occurred while insert Operation: " + e);
-            throw e;
+           e.printStackTrace();
         }
     }
 }
