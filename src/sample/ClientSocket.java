@@ -1,18 +1,20 @@
 package sample;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-import tables.Login;
-import tables.Oferty;
-
-import java.awt.*;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * Created by Wojtek on 23.06.2017.
+ * ClientSocket odpowiada za komumikację pomiędzy klientem a serwerem
  */
 public class ClientSocket {
+    /**
+     * Metoda pobiera trzy obiekty: dwa Stringi, które określają jaka metoda ma być wykonana na serwerze i jeden typu Object, który zawiera dane potrzebne do wykonania metod
+     * @param a typu String
+     * @param b typu String
+     * @param ob typu Object
+     * @return obiekt typu Object
+     */
     public static Object connectToSerwer(String a, String b, Object ob) throws IOException {
         Socket socket = new Socket("localhost",54321);
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());

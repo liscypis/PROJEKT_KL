@@ -1,34 +1,21 @@
 package sample;
 
 
-import controller.AdminController;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-
-import java.io.IOException;
-
-/*
-    Uzytkownik może wybrać jedna ofertę.
-    Jak zaznaczy jakąś ofertę to na dole będzie przyciść REZERWUJ
-    Oferty powinny mieć termin tzn od kiedy do kiedy trwa wycieczka,
-    i powinny mieć też ilość wonych miejsc + trasę wycieczki np KRR - Berlin - Koniec świata.
-    W zamówieniach może tylko zobacyzć czy jest zapłacone za wycieczkę
-
-    DODAć wyszukiwanie ofert
-
-    zmienic edycję, żeby był tylko jeden przycisk
-
-*/
+/**
+ * Klasa Main uruchamia cały interface
+ */
 public class Main extends Application {
-
+    /**
+     * Metoda wyświetla interface logowania
+     * @param primaryStage typu Stage
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("view/login.fxml"));
@@ -36,14 +23,13 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
         primaryStage.setResizable(false);
-
-
     }
 
-
+    /**
+     * Metoda startuje cały program
+     * @param args typu String[]
+     */
     public static void main(String[] args) {
         launch(args);
-
-
     }
 }

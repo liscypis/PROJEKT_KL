@@ -9,7 +9,7 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
 /**
- * Created by Wojtek on 13.06.2017.
+ * Klasa Zamowienia przechowuje dane z tab Zamowienia
  */
 public class Zamowienia implements Externalizable {
     private StringProperty opis_zam;
@@ -58,6 +58,10 @@ public class Zamowienia implements Externalizable {
         this.ubezpieczenie.set(ubezpieczenie);
     }
 
+    /**
+     * Metoda zapisuje obiekt do strumienia
+     * @param out typu ObjectOutput
+     */
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(getOpis_zam());
@@ -65,6 +69,10 @@ public class Zamowienia implements Externalizable {
         out.writeObject(getUbezpieczenie());
     }
 
+    /**
+     * Metoda odczytuje obiekt ze strumienia
+     * @param in typu ObjectInput
+     */
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         setOpis_zam((String)in.readObject());

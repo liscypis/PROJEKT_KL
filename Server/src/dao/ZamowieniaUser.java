@@ -9,10 +9,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Wojtek on 13.06.2017.
+ * Klasa zawiera metode pobierającą zamowienai usera
  */
 public class ZamowieniaUser {
-    //SELECT * ZAMOWIENIA user
+
+    /**
+     * Metoda pobiera z bazy wszystkie zamowienie uzytkownika o podanym id i zapisuje je na ArrayList
+     * @param id_usera id_uzytkownika
+     * @return obiekt typu ArrayList
+     */
     public static ArrayList<Zamowienia> searchZamowienia (int id_usera) throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT oferty.opis,ubezpieczenie,wplata FROM zamowienia, oferty where zamowienia.id_oferty = oferty.id_oferty AND zamowienia.id_uzytkownika="+id_usera+"";
         ArrayList<Zamowienia> zamowieniaList = null;
@@ -26,7 +31,11 @@ public class ZamowieniaUser {
         return zamowieniaList;
     }
 
-    // dodawanie ofert do listy
+    /**
+     * Metoda sapisuje zamówienia na ArrayList
+     * @param rs obiekt typu ResultSet
+     * @return obiekt typu ArrayList
+     */
     public static ArrayList<Zamowienia> getZamowieniaList(ResultSet rs) throws SQLException
     {
         ArrayList<Zamowienia> ofertyList = new ArrayList<>();

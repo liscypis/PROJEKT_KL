@@ -16,13 +16,22 @@ import static dao.UzytkownicyAdmin.searchUzytkownicy;
 
 
 /**
- * Created by Wojtek on 22.06.2017.
+ * Klasa RequestHandler odpowiada za komunikacje klient - serwer
  */
 public class RequestHandler implements Runnable {
     private final Socket client;
+
+    /**
+     * Konstruktor Klasy RequestHandler
+     * @param client typu Socket
+     */
     public RequestHandler(Socket client) {
             this.client = client;
         }
+
+    /**
+     * Metoda pobiera i wysyła informacje do klienta
+     */
     @Override
     public void run() {
             try{

@@ -18,7 +18,7 @@ import java.util.Date;
 import static sample.ClientSocket.connectToSerwer;
 
 /**
- * Created by Wojtek on 13.06.2017.
+ * UserController obsługuje interfejs użytkownika
  */
 public class UserController {
 
@@ -89,7 +89,9 @@ public class UserController {
     private Label statement;
     private Uzytkownicy uz;
 
-
+    /**
+     * Medota wykonuje się podczas inicjalizacji okna
+     */
     @FXML
     private void initialize () throws SQLException, ClassNotFoundException, IOException {
         id_oferty.setCellValueFactory(cellData -> cellData.getValue().id_ofertyProperty().asObject());
@@ -121,9 +123,10 @@ public class UserController {
         surnameEdit.setText(uz.getNazwisko());
 
     }
-    //*************************************
-    // Szuka i Dodaje oferty do tabview
-    //*************************************
+
+    /**
+     * Pobiera wyszystkie oferty z bazy, następnie wywołuje metode wypełniającą tableview
+     */
     @FXML
     private void searchOfertyUs() throws ClassNotFoundException {
         try {
@@ -134,17 +137,18 @@ public class UserController {
         }
     }
 
-    //*************************************
-    // Dodaje oferty do tabview
-    //*************************************
+    /**
+     * Dodaje elementy do tableview oferty_user
+     * @param oferty parametr typu ObservableList
+     */
     @FXML
     private void populateOfertyUs (ObservableList<Oferty> oferty)  {
         oferty_user.setItems(oferty);
     }
 
-    //*************************************
-    // Szuka i Dodaje zamowienia do tabview
-    //*************************************
+    /**
+     * Pobiera wyszystkie zamowienia uzytkownika z bazy, następnie wywołuje metode wypełniającą tableview
+     */
     @FXML
     private void searchZamowienia() throws SQLException, ClassNotFoundException {
         try {
@@ -154,10 +158,10 @@ public class UserController {
             e.printStackTrace();
         }
     }
-
-    //*************************************
-    // Dodaje zamowienia do tabview
-    //*************************************
+    /**
+     * Dodaje elementy do tableview zamowienia_user
+     * @param zam parametr typu ObservableList
+     */
     @FXML
     private void populateZamowienia (ObservableList<Zamowienia> zam)  {
         zamowienia_user.setItems(zam);
@@ -165,6 +169,10 @@ public class UserController {
     //*************************************
     // Uzupelnia textField'y po kliknieciu na element w tabview
     //*************************************
+
+    /**
+     * Metoda pobiera dane oferty po klikniecu na dana ofertę
+     */
     @FXML
     private void getCenaOnClick(){
         oferty_user.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -180,6 +188,10 @@ public class UserController {
     //*************************************
     // Dodaje zamownienie i dekrementuje ilosc mniejsc w tab oferty dajen oferty
     //*************************************
+
+    /**
+     * Metoda dodaje zamownienie i zmniejsza ilosc mniejsc w danej ofercie
+     */
     @FXML
     private void addZamowienie () throws  ClassNotFoundException {
         try {
@@ -204,6 +216,10 @@ public class UserController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Metoda szuka zamowien które zawierają podany ciąg znaków, następnie wywołuje metode wypełniającą tableview
+     */
     @FXML
     private void findOferta() throws SQLException, ClassNotFoundException {
         try {
@@ -213,20 +229,16 @@ public class UserController {
                 Oferty of = new Oferty();
                 of.setOpis(szukajOferty.getText());
                 ObservableList<Oferty> ofe = FXCollections.observableArrayList((ArrayList<Oferty>) connectToSerwer("Szukaj","Ofert",of));
-                populateFindOferty(ofe);
+                populateOfertyUs(ofe);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    //*************************************
-    // Dodaje zamowienia do tabview
-    //*************************************
-    @FXML
-    private void populateFindOferty (ObservableList<Oferty> ofe)  {
-        oferty_user.setItems(ofe);
-    }
+    /**
+     * Metoda zmienia imie uzytkownika
+     */
     @FXML
     private void editUserName () throws ClassNotFoundException {
         try {
@@ -241,6 +253,9 @@ public class UserController {
         }
     }
 
+    /**
+     * Metoda zmienia nazwisko uzytkownika
+     */
     @FXML
     private void editUserSurname () throws ClassNotFoundException {
         try {
@@ -255,7 +270,9 @@ public class UserController {
         }
     }
 
-
+    /**
+     * Metoda zmienia login uzytkownika
+     */
     @FXML
     private void editUserLogin () throws ClassNotFoundException, IOException, InterruptedException {
         if(checkLogin() == false){
@@ -271,11 +288,15 @@ public class UserController {
             statement.setText("LOGIN ZOSTAł ZMIENIONY");
         }
     }
+
+    /**
+     * Metoda zmienia hasło uzytkownika
+     */
     @FXML
     private void editUserPassword () throws SQLException, ClassNotFoundException, IOException {
         try {
             if(checkPassword() == false) {
-                statement.setText("PODALES DWA ROZNE HASLA");
+                statement.setText("PODAłES DWA ROZNE HASłA");
             }
             else {
                 Login log = new Login();
@@ -284,12 +305,16 @@ public class UserController {
                 connectToSerwer("Update","Password",log);
                 newPassworEdit.setText(null);
                 newPassworRepeatEdit.setText(null);
-                statement.setText("HASLO ZOSTAłO ZMIENIONE");
+                statement.setText("HASłO ZOSTAłO ZMIENIONE");
                 }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Metoda aktualizuje dane uzytkownika
+     */
     @FXML
     private void updateDataUser() throws SQLException, IOException, ClassNotFoundException, InterruptedException {
         if(newSurameEdit.getText() == null || newSurameEdit.getText().trim().isEmpty()){
@@ -315,17 +340,26 @@ public class UserController {
             editUserPassword();
         }
     }
+
+    /**
+     * Metoda sprawdza czy podany login w newLoginEdit jest wolny czy zajęty
+     * @return wartość logiczna
+     */
     private boolean checkLogin() throws ClassNotFoundException, IOException, InterruptedException {
         Login lg = (Login) connectToSerwer("Wolny","Login",newLoginEdit.getText());
         if(lg == null) {
             return true;
         }
         else {
-            statement.setText("LOGIN ZAJĘTY, WYBIERZ INNY");
+            statement.setText("LOGIN ZAJETY, WYBIERZ INNY");
             return false;
         }
     }
 
+    /**
+     * Metoda sprawdza czy podane hasla są takie same
+     * @return wartość logiczna
+     */
     private boolean checkPassword() {
         if(newPassworEdit.getText().trim().equals(newPassworRepeatEdit.getText().trim())){
             return true;

@@ -10,13 +10,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Wojtek on 13.06.2017.
+ * Klasa zawiera metody operujace na zamowieniach uzytkownikow
  */
 public class UzytkownicyAdmin {
 
     //*************************************
     //SELECT  FROM Uzytkowncy
     //*************************************
+
+    /**
+     * Metoda pobiera z bazy wszystkich uzytkownikow ktorzy zlozyli zamowienie i zapisuje je na ArrayList
+     * @return obiekt typu ArrayList
+     */
     public static ArrayList<Uzytkownicy> searchUzytkownicy () throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT zamowienia.id_zamowienia, oferty.id_oferty, uzytkownicy.id_uzytkownika, imie, nazwisko, wplata, ubezpieczenie FROM oferty, uzytkownicy, zamowienia where zamowienia.id_uzytkownika = uzytkownicy.id_uzytkownika and zamowienia.id_oferty = oferty.id_oferty";
         ArrayList<Uzytkownicy> uzytkownicyList = null;
@@ -29,9 +34,11 @@ public class UzytkownicyAdmin {
         return uzytkownicyList;
     }
 
-    //*************************************
-    // Dodanie uzytkownikow do listy
-    //*************************************
+    /**
+     * Metoda zapisuje dane otrzymane w argumencie
+     * @param rs obiekt typu ResultSet
+     * @return obiekt typu ArrayList
+     */
     public static ArrayList<Uzytkownicy> getUzywkownicyList(ResultSet rs) throws SQLException
     {
         ArrayList<Uzytkownicy> uzytkownicyList = new ArrayList<>();
@@ -49,9 +56,11 @@ public class UzytkownicyAdmin {
         }
         return uzytkownicyList;
     }
-    //*************************************
-    //UPDATE wpłata
-    //*************************************
+
+    /**
+     * Metoda aktualizuje wpłatę uzytkownika za wycieczke
+     * @param uz obiekt typu Uzytkownicy
+     */
     public static void updateWplata (Uzytkownicy uz) throws SQLException, ClassNotFoundException {
         String updateStmt = "UPDATE ZAMOWIENIA SET WPLATA='"+uz.getWplata()+"' WHERE ID_ZAMOWIENIA= "+uz.getId_zamowienia()+"";
         try {

@@ -9,7 +9,7 @@ import java.io.ObjectOutput;
 import java.util.Date;
 
 /**
- * Created by Wojtek on 09.06.2017.
+ * Klasa Oferty przechowuje dane z tab Oferty
  */
 public class Oferty implements Externalizable{
     private IntegerProperty id_oferty;
@@ -98,6 +98,10 @@ public class Oferty implements Externalizable{
         this.ilosc_miejsc.set(ilosc_miejsc);
     }
 
+    /**
+     * Metoda zapisuje obiekt do strumienia
+     * @param out typu ObjectOutput
+     */
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeInt(getId_oferty());
@@ -108,6 +112,10 @@ public class Oferty implements Externalizable{
         out.writeDouble(getCena());
     }
 
+    /**
+     * Metoda odczytuje obiekt ze strumienia
+     * @param in typu ObjectInput
+     */
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         setId_oferty(in.readInt());

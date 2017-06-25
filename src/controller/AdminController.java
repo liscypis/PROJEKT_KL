@@ -1,5 +1,6 @@
 package controller;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,10 +19,9 @@ import static sample.ClientSocket.connectToSerwer;
 
 
 /**
- * Created by Wojtek on 09.06.2017.
+ * Klasa AdminController obsługuje interfejs admina
  */
 public class AdminController {
-
 
     // populate oferty
     @FXML
@@ -84,7 +84,6 @@ public class AdminController {
     private Button edytujZapisz;
     @FXML
     private Button edytujWplata;
-
     @FXML
     private ChoiceBox wplata;
     @FXML
@@ -92,7 +91,9 @@ public class AdminController {
     @FXML
     ObservableList<String> wplatal = FXCollections.observableArrayList("Tak","Nie");
 
-    //inicjalizacja
+    /**
+     * Medota wykonuje się podczas inicjalizacji okna
+     */
     @FXML
     private void initialize () throws SQLException, ClassNotFoundException {
         id_oferty.setCellValueFactory(cellData -> cellData.getValue().id_ofertyProperty().asObject());
@@ -116,9 +117,10 @@ public class AdminController {
         edytujZapisz.setDisable(true);
 
     }
-    //*************************************
-    //Wyszukuje wszytkie oferty i dodaje je do tabview
-    //*************************************
+
+    /**
+     * Pobiera wyszystkie oferty z bazy, następnie wywołuje funkcję wypełniającą tableview
+     */
     @FXML
     private void searchOferty() throws SQLException, ClassNotFoundException {
         try {
@@ -128,17 +130,18 @@ public class AdminController {
             e.printStackTrace();
         }
     }
-
-    //*************************************
-    //Dodaje elementy do oferty_admin
-    //*************************************
+    /**
+     * Dodaje elementy do tableview oferty_admin
+     * @param oferty parametr typu ObservableList
+     */
     @FXML
     private void populateOferty (ObservableList<Oferty> oferty)  {
         oferty_admin.itemsProperty().setValue(oferty);
     }
-    //*************************************
-    //Wyszukuje wszytkich uz i dodaje do tabview
-    //*************************************
+
+    /**
+     * Pobiera wyszystkich Uzytkownikow z bazy, następnie wywołuje funkcję wypełniającą tableview
+     */
     @FXML
     private void searchUzytkownicy() throws ClassNotFoundException {
         try {
@@ -149,16 +152,16 @@ public class AdminController {
         }
     }
 
-    //*************************************
-    //dodaje elementy do uzytkoicy_admin
-    //*************************************
+    /**
+     * Dodaje elementy do tableview uzytkownicy_admin
+     * @param uz parametr typu ObservableList
+     */
     @FXML
-    private void populateUzytkownicy (ObservableList<Uzytkownicy> uz) throws ClassNotFoundException {
-        uzytkownicy_admin.setItems(uz);
-    }
-    //*************************************
-    //Dodaje oferte
-    //*************************************
+    private void populateUzytkownicy (ObservableList<Uzytkownicy> uz) {uzytkownicy_admin.setItems(uz);}
+
+    /**
+     * Medoda dodaje nową ofertę
+     */
     @FXML
     private void insertOfe () throws SQLException, ClassNotFoundException {
         try {
@@ -186,9 +189,10 @@ public class AdminController {
             e.printStackTrace();
         }
     }
-    //*************************************
-    // Aktualizuje oferte
-    //*************************************
+
+    /**
+     * Metoda edutująca ofertę
+     */
     @FXML
     private void updateOfe () throws SQLException, ClassNotFoundException {
         try {
@@ -208,9 +212,10 @@ public class AdminController {
             e.printStackTrace();
         }
     }
-    //*************************************
-    // Aktualicuje wplate
-    //*************************************
+
+    /**
+     * Metoda aktualizująca wpłatę
+     */
     @FXML
     private void updateWpl () throws ClassNotFoundException {
         try {
@@ -224,9 +229,10 @@ public class AdminController {
             e.printStackTrace();
         }
     }
-    //*************************************
-    // Uzupelnia textField'y po kliknieciu na element w tabview
-    //*************************************
+
+    /**
+     * Metoda pobiera dane oferty po kliknięciu na daną ofertę
+     */
     @FXML
     private void getOfertaOnClick(){
         oferty_admin.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -241,9 +247,10 @@ public class AdminController {
                 cenaFieldEdit.setText(String.valueOf(newValue.getCena()));
         });
     }
-    //*************************************
-    // Uzupelnia textField'y po kliknieciu na element w tabview
-    //*************************************
+
+    /**
+     * Metoda pobiera dane wpłaty po kliknięciu za zamówienie
+     */
     @FXML
     private void getZamowienieOnClick(){
         uzytkownicy_admin.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -255,7 +262,11 @@ public class AdminController {
                 wplata.setValue(newValue.getWplata());
         });
     }
-    // zamiana stringa na date
+
+    /**
+     * Metoda zamieniająca Stringa na Date
+     * @param strDate String do zamiany na datę
+     */
     public static Date toSqlDate(String strDate)
     {
         DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");

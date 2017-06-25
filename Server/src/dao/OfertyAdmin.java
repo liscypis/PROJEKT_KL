@@ -13,13 +13,14 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Wojtek on 09.06.2017.
+ * Zawiera metody odpowiedzialne za operacje na tab Oferty
  */
 public class OfertyAdmin {
 
-   //*************************************
-   //SELECT * FROM oferty
-   //*************************************
+    /**
+     * Metoda pobiera z bazy wszystkie oferty i zapisuje do ArrayList
+     * @return obiekt ArrayList
+     */
     public static ArrayList<Oferty> searchOferty () throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM oferty";
         ArrayList<Oferty> ofertyList = null;
@@ -31,10 +32,11 @@ public class OfertyAdmin {
         }
         return ofertyList;
     }
-
-    //*************************************
-    // DOdawanie ofert do listy
-    //*************************************
+    /**
+     * Metoda zapisuje orefty w ArrayList
+     * @param rs ResultSet
+     * @return obiekt typu ArrayList
+     */
     public static ArrayList<Oferty> getOfertyList(ResultSet rs) throws SQLException
     {
         ArrayList<Oferty> ofertyList = new ArrayList<>();
@@ -51,9 +53,11 @@ public class OfertyAdmin {
         }
         return ofertyList;
     }
-    //*************************************
-    //INSERT oferta
-    //*************************************
+
+    /**
+     * Metoda dodaje nową ofertę
+     * @param ofe obiekt typu Oferty
+     */
     public static void insertoferta (Oferty ofe) throws SQLException, ClassNotFoundException {
         String updateStmt = "insert into oferty values(oferty_seq.nextval,'"+ofe.getOpis()+"',"+ofe.getCena()+",'"+ofe.getData_pocz()+"','"+ofe.getData_konc()+"',"+ofe.getIlosc_miejsc()+")";
         try {
@@ -62,9 +66,11 @@ public class OfertyAdmin {
             e.printStackTrace();
         }
     }
-    //*************************************
-    //UPDATE oferta
-    //*************************************
+
+    /**
+     * Metoda aktualizuje oferte
+     * @param ofe obiekt typu Oferty
+     */
     public static void updateOferta (Oferty ofe) throws SQLException, ClassNotFoundException {
         String updateStmt = "UPDATE oferty SET OPIS='"+ofe.getOpis()+"', CENA="+ofe.getCena()+", DATA_POCZ='"+ofe.getData_pocz()+"',DATA_KONC='"+ofe.getData_konc()+"'WHERE id_oferty= "+ofe.getId_oferty()+"";
         try {
@@ -74,7 +80,12 @@ public class OfertyAdmin {
             e.printStackTrace();
         }
     }
-    // zamiana stringa na date
+
+    /**
+     * Metoda zamenia Stringa na date
+     * @param strDate typu String
+     * @return obiekt typu java.sql.Date
+     */
     public static Date toSqlDate(String strDate)
     {
         DateFormat dateFrm = new SimpleDateFormat("yyyy-MM-dd");
@@ -93,7 +104,4 @@ public class OfertyAdmin {
 
         return (sqlDate);
     }
-
-
-
 }

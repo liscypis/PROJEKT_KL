@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import static sample.ClientSocket.connectToSerwer;
 
 /**
- * Created by Wojtek on 15.06.2017.
+ * LoginController obsługuje interfejs logowania
  */
 public class LoginController {
     @FXML
@@ -27,13 +27,11 @@ public class LoginController {
     @FXML
     private Label statement;
 
-    @FXML
-    private void initialize () throws SQLException, ClassNotFoundException{
 
-    }
-    //*************************************
-    // sprawdza login i haslo, ładuje odpowiedni interface(admin or user)
-    //*************************************
+    /**
+     * Metoda sprawdza login i haslo, ładuje odpowiedni interface(admin or user)
+     * @param event parametr typu ActionEvent
+     */
     @FXML
     private void checkLog(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
             Login log = new Login();
@@ -56,9 +54,11 @@ public class LoginController {
                 }
             }
         }
-    //*************************************
-    // wyświetla interface usera
-    //*************************************
+
+    /**
+     * Wyświetla interface usera
+     * @param event parametr typu ActionEvent
+     */
     @FXML
     public void loadUserInterface(ActionEvent event) throws IOException {
         ((Node)(event.getSource())).getScene().getWindow().hide();  // zamyka okno logowania
@@ -69,9 +69,11 @@ public class LoginController {
         stage.show();
         stage.setResizable(false);
     }
-    //*************************************
-    // wyś int adm
-    //*************************************
+
+    /**
+     * Wyświetla interface admina
+     * @param event parametr typu ActionEvent
+     */
     @FXML
     public void loadAdminInterface(ActionEvent event)throws IOException {
         ((Node) (event.getSource())).getScene().getWindow().hide();  // zamyka okno logowania
@@ -82,9 +84,11 @@ public class LoginController {
         stage.show();
         stage.setResizable(false);
     }
-    //*************************************
-    // wyś int rej
-    //*************************************
+
+    /**
+     * Wiświetla interface rejestracji
+     * @param event parametr typu ActionEvent
+     */
     @FXML
     public void loadRegistrationInterface(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/sample/view/registration.fxml"));

@@ -10,13 +10,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Wojtek on 13.06.2017.
+ * Klasa zawiera metody przeprowadzjace operacje na tab Oferty po stronie Uzytkownika
  */
 public class OfertyUser {
 
-    //*************************************
-    //SELECT  FROM oferty
-    //*************************************
+    /**
+     * Metoda pobiera z bazy wyszustkie oferty ktore mają wolne miejsca i zapisuje je do ArrayList
+     * @return obiekt typu ArrayList
+     */
     public static ArrayList<Oferty> searchOfertyUs () throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT * FROM oferty WHERE ILOSC_MIEJSC !=0 ";
         ArrayList<Oferty> ofertyList = null;
@@ -29,10 +30,11 @@ public class OfertyUser {
         }
         return ofertyList;
     }
-
-    //*************************************
-    //Dodawanie elementow do listy
-    //*************************************
+    /**
+     * Metoda dodaje Oferty do ArrayList
+     * @param rs obiekt typu ResultSet
+     * @return obiekt typu ArrayList
+     */
     public static ArrayList<Oferty> getOfertyListUs(ResultSet rs) throws SQLException
     {
         ArrayList<Oferty> ofertyList = new ArrayList<>();
@@ -49,9 +51,12 @@ public class OfertyUser {
         }
         return ofertyList;
     }
-    //*************************************
-    // Szuka loginu
-    //*************************************
+
+    /**
+     * Metoda szuka loginu dla podanego id uzytkownika
+     * @param id obiekt typu Integer
+     * @return obiekt typu Login
+     */
     public static Login checkLogintoLabel (Integer id) throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT login FROM uzytkownicy WHERE id_uzytkownika="+id+"";
         Login lg = null;
@@ -63,21 +68,29 @@ public class OfertyUser {
         }
         return lg;
     }
-    //*************************************
-    // zapisuje znaleziony login
-    //*************************************
+
+    /**
+     * Metoda zapisuje login
+     * @param rs obiekt typu ResultSet
+     * @return obiekt typu Login
+     */
     private static Login getLogin(ResultSet rs) throws SQLException
     {
-        Login ofe = null;
+        Login lg = null;
         if (rs.next()) {
-            ofe = new Login();
-            ofe.setLogin(rs.getString("LOGIN"));
+            lg = new Login();
+            lg.setLogin(rs.getString("LOGIN"));
         }
-        return ofe;
+        return lg;
     }
     //*************************************
     // dodaje zamownienie
     //*************************************
+
+    /**
+     * Metoda dodaje zamowienie
+     * @param uz obiekt typu Uzytkownicy
+     */
     public static void addZam (Uzytkownicy uz) throws SQLException, ClassNotFoundException {
         String updateStmt = "insert into ZAMOWIENIA values(zamowienia_seq.nextval,"+uz.getId_uzytkownika()+","+uz.getId_wycieczki()+",'"+uz.getUbezpieczenie()+"','Nie')";
         try {
@@ -86,7 +99,10 @@ public class OfertyUser {
            e.printStackTrace();
         }
     }
-    // pomniejsza ilosc miejsc przy skladaniu zamowienia
+    /**
+     * Metoda zmniejsza ilosc mniejsc w danej ofercie
+     * @param ofe obiekt typu Oferty
+     */
     public static void decreaseIloscMiejsc (Oferty ofe) throws SQLException, ClassNotFoundException {
         ofe.setIlosc_miejsc(ofe.getIlosc_miejsc()-1);
         String updateStmt = "UPDATE oferty SET ILOSC_MIEJSC="+ofe.getIlosc_miejsc()+" WHERE id_oferty= "+ofe.getId_oferty()+"";
@@ -97,6 +113,11 @@ public class OfertyUser {
         }
     }
 
+    /**
+     * Metoda szuka ofert ktore posiadaja podany ciąg znaków i zapisuje je na liste
+     * @param ofe obiekt typu Oferty
+     * @return obiekt typu ArrayList
+     */
     public static ArrayList<Oferty> szukajOferty(Oferty ofe) {
         //Declare a SELECT statement
         String selectStmt = "SELECT * FROM oferty WHERE OPIS LIKE  '%"+ofe.getOpis()+"%' ";
@@ -111,7 +132,11 @@ public class OfertyUser {
         }
         return ofertyList;
     }
-
+    /**
+     * Metoda zapisuje na liste znalecione oferty
+     * @param rs obiekt typu ResultSet
+     * @return obiekt typu ArrayList
+     */
     public static ArrayList<Oferty> getszukajOferty(ResultSet rs) throws SQLException
     {
         ArrayList<Oferty> ofertyList = new ArrayList<>();

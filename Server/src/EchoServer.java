@@ -7,8 +7,14 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Klasa EchoServer zawiera metodę która tworzy wątki i sockety
+ */
 public class EchoServer {
-
+    /**
+     * Metoda tworzy socket i wątki
+     * @param args typu String[]
+     */
     public static void main(String[] args) throws IOException {
 
         System.out.println("Serwer włączony na porcie 54321");

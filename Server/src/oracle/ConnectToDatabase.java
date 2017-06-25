@@ -5,11 +5,14 @@ import com.sun.rowset.CachedRowSetImpl;
 import java.sql.*;
 
 /**
- * Created by Wojtek on 09.06.2017.
+ * Klasa zawiera medody odpowiedzialne za łączenie się z bazą i wykonywanie operacji na niej
  */
 public class ConnectToDatabase {
     private static Connection connection = null;
 
+    /**
+     * Metoda łączy się z bazą
+     */
     public static void connect() {
         System.out.println("-------- Oracle JDBC Connection ------");
         try {
@@ -34,7 +37,9 @@ public class ConnectToDatabase {
         }
     }
 
-    //Close Connection
+    /**
+     * Metoda zamyka połączenie z bazą
+     */
     public static void disconnect() throws SQLException {
         try {
             if (connection != null && !connection.isClosed()) {
@@ -44,7 +49,12 @@ public class ConnectToDatabase {
             throw e;
         }
     }
-    // Execute select
+
+    /**
+     * Metoda wykonuje zapytania podaje jej w argumencie
+     * @param queryStmt obiekt typu String
+     * @return obiekt typu CachedRowSetImpl
+     */
     public static ResultSet executeSelect(String queryStmt) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         ResultSet resultSet = null;
@@ -70,7 +80,10 @@ public class ConnectToDatabase {
         return crs;
     }
 
-    // Update/delete/insert
+    /**
+     * Metoda wykonuje Update/delete/insert podane jako argument
+     * @param sqlStmt obiekt typu String
+     */
     public static void executeUpdate(String sqlStmt) throws SQLException, ClassNotFoundException {
         Statement stmt = null;
         try {

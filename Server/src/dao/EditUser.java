@@ -8,12 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by Wojtek on 17.06.2017.
+ * Zawiera metody modyfikujące uzytkownika
  */
 public class EditUser {
     //*************************************
     // pobiera immie i nazwisko o podanym id
     //*************************************
+
+    /**
+     * Metoda pobiera z bazy imie i nazwisko o podanym id
+     * @param uzytkownicy obekt typu Uzytkownicy
+     * @return Obiekt typu Uzytkownicy
+     */
     public static Uzytkownicy getImieAndNazwisko (Uzytkownicy uzytkownicy) throws SQLException, ClassNotFoundException {
         String selectStmt = "SELECT IMIE, NAZWISKO FROM UZYTKOWNICY WHERE ID_UZYTKOWNIKA= "+uzytkownicy.getId_uzytkownika()+"";
         Uzytkownicy uz = null;
@@ -25,6 +31,11 @@ public class EditUser {
         }
         return uz;
     }
+    /**
+     * Metoda zapisuje dane otrzymane w argumencie
+     * @param rs typu ResultSet
+     * @return obiekt typu Uzytkownicy
+     */
     private static Uzytkownicy getImieAndNazwiskoFromResult(ResultSet rs) throws SQLException
     {
         Uzytkownicy uz = null;
@@ -39,6 +50,12 @@ public class EditUser {
     //*************************************
     //UPDATE nazwisko
     //*************************************
+
+    /**
+     * Medota aktualicuje nazwisko uzytkownika
+     * @param surname typu String
+     * @param lg typu Login
+     */
     public static void updateSurname (String surname, Login lg) throws SQLException, ClassNotFoundException {
         String updateStmt = "UPDATE UZYTKOWNICY SET NAZWISKO='"+surname+"' WHERE ID_UZYTKOWNIKA= "+lg.getId_uz()+"";
         try {
@@ -47,6 +64,12 @@ public class EditUser {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Metoda aktualizuje imie uzytkownika
+     * @param name typu String
+     * @param lg typu Login
+     */
     public static void updateName (String name, Login lg) throws SQLException, ClassNotFoundException {
         String updateStmt = "UPDATE UZYTKOWNICY SET IMIE='"+name+"' WHERE ID_UZYTKOWNIKA= "+lg.getId_uz()+"";
         try {
@@ -55,6 +78,11 @@ public class EditUser {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Metoda aktualizje hasło uzytkownika
+     * @param lg typu Login
+     */
     public static void updatePassword (Login lg) throws SQLException, ClassNotFoundException {
         String updateStmt = "UPDATE UZYTKOWNICY SET HASLO='"+lg.getHaslo()+"' WHERE ID_UZYTKOWNIKA= "+lg.getId_uz()+"";
         try {
@@ -63,6 +91,11 @@ public class EditUser {
             throw e;
         }
     }
+
+    /**
+     * Metoda aktualizuje login uzytkownika
+     * @param lg typu Login
+     */
     public static void updateLogin (Login lg) throws SQLException, ClassNotFoundException {
         String updateStmt = "UPDATE UZYTKOWNICY SET LOGIN='"+lg.getLogin()+"' WHERE ID_UZYTKOWNIKA= "+lg.getId_uz()+"";
         try {

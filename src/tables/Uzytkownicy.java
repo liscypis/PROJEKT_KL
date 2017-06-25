@@ -11,7 +11,7 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
 /**
- * Created by Wojtek on 13.06.2017.
+ * Klasa Uzytkownicy przechowuje dane z tab Uzytkownicy i Zamowienia
  */
 public class Uzytkownicy  implements Externalizable{
     private IntegerProperty id_zamowienia;
@@ -116,6 +116,10 @@ public class Uzytkownicy  implements Externalizable{
         this.nazwisko.set(nazwisko);
     }
 
+    /**
+     * Metoda zapisuje obiekt do strumienia
+     * @param out typu ObjectOutput
+     */
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeInt(getId_zamowienia());
@@ -126,7 +130,10 @@ public class Uzytkownicy  implements Externalizable{
         out.writeObject(getWplata());
         out.writeObject(getUbezpieczenie());
     }
-
+    /**
+     * Metoda odczytuje obiekt ze strumienia
+     * @param in typu ObjectInput
+     */
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         setId_zamowienia(in.readInt());

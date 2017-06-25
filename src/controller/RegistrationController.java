@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import static sample.ClientSocket.connectToSerwer;
 
 /**
- * Created by Wojtek on 16.06.2017.
+ * RegistrationController obsługuje interfejs rejestracji
  */
 public class RegistrationController {
 
@@ -35,14 +35,18 @@ public class RegistrationController {
     @FXML
     private Button logIn;
 
-
+    /**
+     * Metoda ustawia button logIn na nieaktywny
+     */
     @FXML
     private void initialize () throws SQLException, ClassNotFoundException{
         logIn.setVisible(false);
     }
-    //*************************************
-    // sprawdza czy login jest wolny, pusty
-    //*************************************
+
+    /**
+     * Metoda sprawdza czy login jest wolny/ zajęty
+     * @return wartość logiczna
+     */
     @FXML
     private boolean checkFreeLogin() throws SQLException, ClassNotFoundException, IOException {
         Login lg = (Login) connectToSerwer("Wolny","Login",loginField.getText());
@@ -50,13 +54,14 @@ public class RegistrationController {
             return true;
         }
         else {
-            loginStatement.setText("LOGIN ZAJĘTY, WYBIERZ INNY");
+            loginStatement.setText("LOGIN ZAJETY, WYBIERZ INNY");
             return false;
         }
     }
-    //*************************************
-    // sprawdza czy uzupełniono wszytie pola
-    //*************************************
+    /**
+     * Metoda sprawdza czy uzupełniono wszytie pola
+     * @return wartość logiczna
+     */
     private boolean checkFields(){
         if(nameField.getText().trim().equals("") || surnameField.getText().trim().equals("")
                 || loginField.getText().trim().equals("") || passwordField.getText().trim().equals("") || passwordField_2.getText().trim().equals("")) {
@@ -65,35 +70,40 @@ public class RegistrationController {
         else
             return true;
     }
-    //*************************************
-    // sprawdza hasła czy są takie same
-    //*************************************
+
+    /**
+     * Metoda sprawdza hasła czy są takie same
+     * @return wartość logiczna
+     */
     private boolean checkPassword() {
         if(passwordField.getText().trim().equals(passwordField_2.getText().trim())){
             return true;
         }
         else return false;
     }
-    //*************************************
-    // zamyka okno rejestracji
-    //*************************************
+
+    /**
+     * Metoda zamyka okno rejestracji
+     * @param actionEvent obiekt typu ActionEvent
+     */
     @FXML
     private void closeRegistration(ActionEvent actionEvent) {
         ((Node)(actionEvent.getSource())).getScene().getWindow().hide();  // zamyka okno logowania
     }
-    //*************************************
-    // dodaje nowego uzytkownika
-    //*************************************
+
+    /**
+     * Metoda dodaje nowego uzytkownika
+     */
     @FXML
     private void addNewUser () throws ClassNotFoundException, IOException, SQLException {
         if(checkFields() == false)
         {
-            infoStatement.setText("UZUPEŁNIJ WSZYTKIE POLA");
+            infoStatement.setText("UZUPELNIJ WSZYTKIE POLA");
         }
         else
         {
             if(checkPassword() == false) {
-                infoStatement.setText("PODAŁEŚ DWA RÓŻNE HASŁA");
+                infoStatement.setText("PODALEŚ DWA ROZNE HASLA");
             }
             else{
                 if(checkFreeLogin() == false) {
