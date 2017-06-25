@@ -1,7 +1,5 @@
 package controller;
 
-import dao.OfertyAdmin;
-import dao.UzytkownicyAdmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -83,6 +81,10 @@ public class AdminController {
     private TextField dataKoncFieldEdit;
     @FXML
     private TextField cenaFieldEdit;
+    @FXML
+    private Button edytujZapisz;
+    @FXML
+    private Button edytujWplata;
 
     @FXML
     private ChoiceBox wplata;
@@ -111,6 +113,8 @@ public class AdminController {
         searchUzytkownicy();
         wplata.setValue("Tak");
         wplata.setItems(wplatal);
+        edytujWplata.setDisable(true);
+        edytujZapisz.setDisable(true);
 
     }
     //*************************************
@@ -164,15 +168,23 @@ public class AdminController {
     @FXML
     private void insertOfe (ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         try {
-            Oferty ofe = new Oferty();
-            ofe.setOpis(opisField.getText());
-            ofe.setCena(Double.valueOf(cenaField.getText()));
-            ofe.setData_pocz(toSqlDate(dataPoczField.getText()));
-            ofe.setData_konc(toSqlDate(dataKoncField.getText()));
-            ofe.setIlosc_miejsc(Integer.valueOf(iloscField.getText()));
-            connectToSerwer("Oferty","Dodaj",ofe);
-            System.out.println("Oferta dodana! \n");
-            searchOferty();
+            if(opisField.getText() == null || opisField.getText().trim().isEmpty() || cenaField.getText() == null || cenaField.getText().trim().isEmpty()
+                    || dataPoczField.getText() == null || dataPoczField.getText().trim().isEmpty() || dataKoncField.getText() == null ||
+                    dataKoncField.getText().trim().isEmpty() || iloscField.getText() == null || iloscField.getText().trim().isEmpty()) {
+                System.out.println("Podaj wszystkie pola");
+            }
+            else {
+                Oferty ofe = new Oferty();
+                ofe.setOpis(opisField.getText());
+                ofe.setCena(Double.valueOf(cenaField.getText()));
+                ofe.setData_pocz(toSqlDate(dataPoczField.getText()));
+                ofe.setData_konc(toSqlDate(dataKoncField.getText()));
+                ofe.setIlosc_miejsc(Integer.valueOf(iloscField.getText()));
+                connectToSerwer("Oferty","Dodaj",ofe);
+                System.out.println("Oferta dodana! \n");
+                searchOferty();
+            }
+
         } catch (SQLException e) {
             System.out.println("Wystapił poblem przy dodawaniu oferty " + e);
             throw e;
@@ -227,6 +239,7 @@ public class AdminController {
             if (newValue == null) {
                 return;
             }
+                edytujZapisz.setDisable(false);
                 idOfertyEdit.setText(String.valueOf(newValue.getId_oferty()));
                 opisFieldEdit.setText(newValue.getOpis());
                 dataPoczFieldEdit.setText(String.valueOf(newValue.getData_pocz()));
@@ -243,6 +256,7 @@ public class AdminController {
             if (newValue == null) {
                 return;
             }
+                edytujWplata.setDisable(false);
                 idZamowieniaEdit.setText(String.valueOf(newValue.getId_zamowienia()));
                 wplata.setValue(newValue.getWplata());
         });

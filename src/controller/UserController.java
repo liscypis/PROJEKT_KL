@@ -1,12 +1,8 @@
 package controller;
 
-import dao.EditUser;
-import dao.OfertyUser;
-import dao.Registration;
-import dao.ZamowieniaUser;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import tables.Login;
@@ -20,8 +16,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static dao.EditUser.checkUserPassword;
-import static dao.EditUser.getImieAndNazwisko;
 import static sample.ClientSocket.connectToSerwer;
 
 /**
@@ -43,6 +37,10 @@ public class UserController {
     private TableColumn<Oferty, Date> data_pocz;
     @FXML
     private TableColumn<Oferty, Date> data_konc;
+    @FXML
+    private TextField szukajOferty;
+    @FXML
+    private Button kupTeraz;
 
     @FXML
     private TableView zamowienia_user;
@@ -85,8 +83,6 @@ public class UserController {
     @FXML
     private TextField newLoginEdit;
     @FXML
-    private PasswordField passwordEdit;
-    @FXML
     private PasswordField newPassworEdit;
     @FXML
     private PasswordField newPassworRepeatEdit;
@@ -107,6 +103,7 @@ public class UserController {
         opis_zam.setCellValueFactory(cellData -> cellData.getValue().opis_zamProperty());
         wplata.setCellValueFactory(cellData -> cellData.getValue().wplataProperty());
         ubezpieczenie.setCellValueFactory(cellData -> cellData.getValue().ubezpieczenieProperty());
+        kupTeraz.setDisable(true);
 
         // do wyswietlania loginu
         log = (Login) connectToSerwer("Uzytkownik","SprLogin",Login.getId());
@@ -181,6 +178,7 @@ public class UserController {
             if (newValue == null) {
                 return;
             }
+            kupTeraz.setDisable(false);
             cenaWycieczki.setText(String.valueOf(newValue.getCena()));
             idOfertyField.setText(String.valueOf(newValue.getId_oferty()));
             miejscaField.setText(String.valueOf(newValue.getIlosc_miejsc()));
@@ -214,44 +212,61 @@ public class UserController {
         }
     }
     @FXML
-    private void editUserName () throws ClassNotFoundException {
-        if(newNameEdit.getText().equals(null)) {
-            statement.setText("NIE PODANO IMIENIA");
-        }
-        else {
-            try {
-                Login lg = new Login();
-                lg.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
-                connectToSerwer("updateName",newNameEdit.getText().trim(),lg);
-                statement.setText("IMIE ZOSTAłO ZMIENIONE");
-                nameEdit.setText(newNameEdit.getText());
-                newNameEdit.setText(null);
-            }  catch (IOException e) {
-                e.printStackTrace();
+    private void findOferta() throws SQLException, ClassNotFoundException {
+        try {
+            if(szukajOferty.getText() == null || szukajOferty.getText().trim().isEmpty()) {
+                searchOfertyUs();
+            }else {
+                Oferty of = new Oferty();
+                of.setOpis(szukajOferty.getText());
+                ObservableList<Oferty> ofe = FXCollections.observableArrayList((ArrayList<Oferty>) connectToSerwer("Szukaj","Ofert",of));
+                //Populate TableView
+                populateFindOferty(ofe);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
+    //*************************************
+    // Dodaje zamowienia do tabview
+    //*************************************
     @FXML
-    private void editUserSurname () throws ClassNotFoundException {
-        if(newSurameEdit.getText().trim().equals("")) {
-            statement.setText("NIE PODANO NAZWISKA");
-        }
-        else {
-            try {
-                Login lg = new Login();
-                lg.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
-                connectToSerwer("updateSurname",newSurameEdit.getText().trim(),lg);
-                statement.setText("NAZWISKO ZOSTAłO ZMIENIONE");
-                surnameEdit.setText(newSurameEdit.getText());
-                newSurameEdit.setText(null);
-            }catch (IOException e) {
-                e.printStackTrace();
-            }
+    private void populateFindOferty (ObservableList<Oferty> ofe)  {
+        //Set items to the oferty_user
+        oferty_user.setItems(ofe);
+    }
+    @FXML
+    private void editUserName () throws ClassNotFoundException {
+        try {
+            Login lg = new Login();
+            lg.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
+            connectToSerwer("updateName",newNameEdit.getText().trim(),lg);
+            nameEdit.setText(newNameEdit.getText());
+            newNameEdit.setText(null);
+            statement.setText("IMIE ZOSTAłO ZMIENIONE");
+        }  catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
-    private void editUserLogin () throws SQLException, ClassNotFoundException, IOException {
+    private void editUserSurname () throws ClassNotFoundException {
+        try {
+            Login lg = new Login();
+            lg.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
+            connectToSerwer("updateSurname", newSurameEdit.getText().trim(), lg);
+            surnameEdit.setText(newSurameEdit.getText());
+            newSurameEdit.setText(null);
+            statement.setText("NAZWISKO ZOSTAłO ZMIENIONE");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void editUserLogin () throws ClassNotFoundException, IOException, InterruptedException {
         if(checkLogin() == false){
         }
         else {
@@ -259,57 +274,61 @@ public class UserController {
             lg.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
             lg.setLogin(newLoginEdit.getText());
             connectToSerwer("Update","Login",lg);
-            statement.setText("LOGIN ZOSTAł ZMIENIONY");
             loginEdit.setText(newLoginEdit.getText());
+            loginUz.setText(newLoginEdit.getText());
             newLoginEdit.setText(null);
+            statement.setText("LOGIN ZOSTAł ZMIENIONY");
         }
     }
     @FXML
     private void editUserPassword () throws SQLException, ClassNotFoundException, IOException {
-        Login login = new Login();
-        login.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
-        login.setHaslo(passwordEdit.getText());
-        Login lg = (Login) connectToSerwer("Sprawdz","Haslo",login);
-        if(lg == null) {
-            statement.setText("PODANO BLEDNE HASLO!");
-        }
-        else{
-            if(newPassworEdit.getText().equals("") || newPassworRepeatEdit.getText().equals("")) {
-                statement.setText("PODAJ NOWE HASłA");
+        try {
+            if(checkPassword() == false) {
+                statement.setText("PODALES DWA ROZNE HASLA");
             }
             else {
-                if(checkPassword() == false) {
-                    statement.setText("PODALES DWA ROZNE HASLA");
+                Login log = new Login();
+                log.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
+                log.setHaslo(newPassworEdit.getText());
+                connectToSerwer("Update","Password",log);
+                newPassworEdit.setText(null);
+                newPassworRepeatEdit.setText(null);
+                statement.setText("HASLO ZOSTAłO ZMIENIONE");
                 }
-                else {
-                    try {
-                        Login log = new Login();
-                        log.setId_uz(Integer.valueOf(idUzytkownikaField.getText()));
-                        log.setHaslo(newPassworEdit.getText());
-                        connectToSerwer("Update","Password",log);
-                        statement.setText("HASLO ZOSTAłO ZMIENIONE");
-                        passwordEdit.setText(newSurameEdit.getText());
-                        newPassworEdit.setText(null);
-                        newPassworRepeatEdit.setText(null);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-    private boolean checkLogin() throws ClassNotFoundException, IOException {
+    @FXML
+    private void updateDataUser() throws SQLException, IOException, ClassNotFoundException, InterruptedException {
+        if(newSurameEdit.getText() == null || newSurameEdit.getText().trim().isEmpty()){
+            System.out.println("");
+        }else{
+            editUserSurname();
+        }
+
+        if(newNameEdit.getText() == null || newNameEdit.getText().trim().isEmpty()){
+            System.out.println("");
+        }else {
+            editUserName();
+        }
+        if(newLoginEdit.getText() == null || newLoginEdit.getText().trim().isEmpty()) {
+            System.out.println("");
+        } else {
+            editUserLogin();
+        }
+
+        if(newPassworEdit.getText() == null || newPassworEdit.getText().trim().isEmpty() || newPassworRepeatEdit.getText() == null || newPassworRepeatEdit.getText().trim().isEmpty()) {
+            System.out.println("");
+        }else {
+            editUserPassword();
+        }
+    }
+    private boolean checkLogin() throws ClassNotFoundException, IOException, InterruptedException {
         //Get all information
-        Login login = new Login();
-        login.setLogin(newLoginEdit.getText());
-        Login lg = (Login) connectToSerwer("Wolny","Login",login);
+        Login lg = (Login) connectToSerwer("Wolny","Login",newLoginEdit.getText());
         if(lg == null) {
-            if(newLoginEdit.getText().trim().equals("")) {
-                statement.setText("NIE PODANO LOGINU ");
-                return false;
-            }else{
-                return true;
-            }
+            return true;
         }
         else {
             statement.setText("LOGIN ZAJĘTY, WYBIERZ INNY");

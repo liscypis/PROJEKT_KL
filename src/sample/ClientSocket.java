@@ -34,6 +34,14 @@ public class ClientSocket {
                 out.writeObject(ob);
                 out.flush();
                 ob = in.readObject();
+            }else if(a == "Szukaj" && b =="Ofert") {
+                out.writeObject(a);
+                out.flush();
+                out.writeObject(b);
+                out.flush();
+                out.writeObject(ob);
+                out.flush();
+                ob = in.readObject();
             }else if(a == "Admin" && b =="Wpłata") {
                 out.writeObject(a);
                 out.flush();
@@ -115,15 +123,6 @@ public class ClientSocket {
                 out.flush();
                 ob = in.readObject();
             }
-            else if(a == "Sprawdz" && b =="Haslo") {
-                out.writeObject(a);
-                out.flush();
-                out.writeObject(b);
-                out.flush();
-                out.writeObject(ob);
-                out.flush();
-                ob = in.readObject();
-            }
             else if(a == "Pobierz" && b =="ImieNazwisko") {
                 out.writeObject(a);
                 out.flush();
@@ -165,14 +164,14 @@ public class ClientSocket {
                 out.writeObject(ob);
                 out.flush();
             }
-            /*else {
+            else {
                 out.writeObject(a);
                 out.flush();
                 out.writeObject(b);
                 out.flush();
                 out.writeObject(ob);
                 out.flush();
-            }*/
+            }
         in.close();
         out.close();
         socket.close();

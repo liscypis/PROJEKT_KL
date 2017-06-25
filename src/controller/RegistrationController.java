@@ -48,13 +48,7 @@ public class RegistrationController {
         //Get all information
         Login lg = (Login) connectToSerwer("Wolny","Login",loginField.getText());
         if(lg == null) {
-            if(loginField.getText().trim().equals("")) {
-                loginStatement.setText("NIE PODANO LOGINU ");
-                return false;
-            }else{
-                loginStatement.setText("Wolny");
-                return true;
-            }
+            return true;
         }
         else {
             loginStatement.setText("LOGIN ZAJĘTY, WYBIERZ INNY");
